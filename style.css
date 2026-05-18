@@ -1456,3 +1456,11 @@ body {
         height: 180px;
     }
 }
+/* ===== NAV BACKGROUND FIX ===== */
+nav {
+    background-color: #F9F8F4;
+    opacity: 1;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-bottom: 1px solid rgba(163, 150, 141, 0.2);
+}
