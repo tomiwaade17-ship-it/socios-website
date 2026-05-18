@@ -1532,3 +1532,9 @@ nav {
         margin-bottom: 40px;
     }
 }
+/* ===== MOBILE GALLERY LAST IMAGE HEIGHT ===== */
+@media (max-width: 768px) {
+    .gallery-grid img:nth-child(5) {
+        height: 150px;
+    }
+}
