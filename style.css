@@ -1512,3 +1512,13 @@ nav {
     background-color: #F9F8F4 !important;
     z-index: 9999;
 }
+/* ===== MOBILE GALLERY SPACING FIX ===== */
+@media (max-width: 768px) {
+    .gallery-preview {
+        padding-bottom: 60px;
+    }
+
+    .gallery-preview .btn-dark-outline {
+        margin-top: 24px;
+    }
+}
