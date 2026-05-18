@@ -1538,3 +1538,10 @@ nav {
         height: 150px;
     }
 }
+/* ===== MOBILE GALLERY LAST IMAGE PORTRAIT ===== */
+@media (max-width: 768px) {
+    .gallery-grid img:nth-child(5) {
+        height: 300px !important;
+        object-position: center;
+    }
+}
