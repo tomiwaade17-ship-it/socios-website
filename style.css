@@ -1522,3 +1522,13 @@ nav {
         margin-top: 24px;
     }
 }
+/* ===== SEE MORE BUTTON SPACING FIX ===== */
+@media (max-width: 768px) {
+    .gallery-preview {
+        padding-bottom: 80px;
+    }
+
+    .gallery-preview div[style] {
+        margin-bottom: 40px;
+    }
+}
