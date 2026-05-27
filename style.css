@@ -3104,3 +3104,20 @@ body {
         background-position: center !important;
     }
 }
+/* ===== HERO MOBILE ALIGNMENT FIX ===== */
+@media (max-width: 768px) {
+    .hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+    }
+}
