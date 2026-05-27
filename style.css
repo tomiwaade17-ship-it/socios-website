@@ -3138,3 +3138,13 @@ body {
         width: 100%;
     }
 }
+/* ===== HERO HEADING CLAMP REMOVE ===== */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        display: block !important;
+        -webkit-line-clamp: unset !important;
+        overflow: visible !important;
+        font-size: 24px;
+        line-height: 1.2;
+    }
+}
