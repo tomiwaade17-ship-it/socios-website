@@ -3355,3 +3355,14 @@ body {
         font-size: 28px !important;
     }
 }
+/* ===== ABOUT PAGE BODY TEXT MOBILE ===== */
+@media (max-width: 768px) {
+    .about-hero p,
+    .why-socios p,
+    .vision-content p,
+    .artist-info p,
+    .expect-card p {
+        font-size: 15px !important;
+        line-height: 1.7 !important;
+    }
+}
