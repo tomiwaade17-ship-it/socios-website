@@ -3068,3 +3068,11 @@ body {
 .testimonial-inner.active {
     display: block;
 }
+/* ===== TESTIMONIAL SLIDER FIX ===== */
+.testimonial-slider .testimonial-inner {
+    display: none !important;
+}
+
+.testimonial-slider .testimonial-inner.active {
+    display: block !important;
+}
