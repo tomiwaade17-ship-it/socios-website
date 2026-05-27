@@ -3366,3 +3366,26 @@ body {
         line-height: 1.7 !important;
     }
 }
+/* ===== GLOBAL MOBILE TEXT SIZE ===== */
+@media (max-width: 768px) {
+    
+    /* ALL SECTION HEADINGS */
+    .section-title,
+    .about-hero h1,
+    .contact-hero h1,
+    .gallery-details-hero h1,
+    .legal-container h1 {
+        font-size: 28px !important;
+    }
+
+    /* ALL BODY TEXT */
+    body {
+        font-size: 15px !important;
+    }
+
+    /* ALL PARAGRAPHS */
+    p {
+        font-size: 15px !important;
+        line-height: 1.7 !important;
+    }
+}
