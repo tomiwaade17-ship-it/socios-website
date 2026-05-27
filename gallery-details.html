@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autumn Salon — Socios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <img src="assets/logo.png" alt="Socios">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="#" class="nav-cta">Join Socios</a>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <div class="page-wrapper">
+
+        <!-- GALLERY DETAILS HERO -->
+        <section class="gallery-details-hero">
+            <div class="gallery-details-hero-overlay"></div>
+            <img src="assets/event-autumn.jpg" alt="Autumn Salon">
+            <h1>Autumn Salon</h1>
+        </section>
+
+        <!-- GALLERY DETAILS GRID -->
+        <section class="gallery-details-section">
+            <div class="gallery-details-grid">
+                <div class="gallery-details-item">
+                    <img src="assets/gallery-1.jpg" alt="Autumn Salon">
+                </div>
+                <div class="gallery-details-item tall">
+                    <img src="assets/gallery-3.jpg" alt="Autumn Salon">
+                </div>
+                <div class="gallery-details-item">
+                    <img src="assets/gallery-2.jpg" alt="Autumn Salon">
+                </div>
+                <div class="gallery-details-item">
+                    <img src="assets/gallery-5.jpg" alt="Autumn Salon">
+                </div>
+                <div class="gallery-details-item">
+                    <img src="assets/gallery-4.jpg" alt="Autumn Salon">
+                </div>
+                <div class="gallery-details-item">
+                    <img src="assets/gallery-6.jpg" alt="Autumn Salon">
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px; margin-bottom: 60px;">
+                <a href="#" class="btn-dark-outline">Explore Full Gallery</a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div>
+                <a href="index.html" class="footer-logo">
+                    <img src="assets/logo.png" alt="Socios">
+                </a>
+                <div class="footer-socials">
+                    <a href="#">in</a>
+                    <a href="#">ig</a>
+                    <a href="#">tt</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Help & Support</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </footer>
+        <div class="footer-bottom">
+            <p>Socios © 2026, All Rights Reserved</p>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+    </script>
+
+    <!-- LENIS SMOOTH SCROLL -->
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothTouch: false,
+        });
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script>
+
+</body>
+</html>

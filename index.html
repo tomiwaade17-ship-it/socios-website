@@ -8,8 +8,7 @@
 </head>
 <body>
     <body>
-<div class="page-wrapper">
-
+<div id="swup" class="page-wrapper">
     <!-- NAVBAR -->
     <nav>
       <a href="index.html" class="nav-logo">
@@ -127,11 +126,11 @@
     <section class="gallery-preview">
         <h2 class="section-title">Moment From Socios</h2>
         <div class="gallery-grid">
-    <img src="assets/gallery-1.jpg" alt="Socios moment">
-    <img src="assets/gallery-3.jpg" alt="Socios moment">
-    <img src="assets/gallery-2.jpg" alt="Socios moment">
-    <img src="assets/gallery-4.jpg" alt="Socios moment">
-    <img src="assets/gallery-5.jpg" alt="Socios moment">
+    <div class="gallery-item"><img src="assets/gallery-1.jpg" alt="Socios moment"></div>
+    <div class="gallery-item"><img src="assets/gallery-3.jpg" alt="Socios moment"></div>
+    <div class="gallery-item"><img src="assets/gallery-2.jpg" alt="Socios moment"></div>
+    <div class="gallery-item"><img src="assets/gallery-4.jpg" alt="Socios moment"></div>
+    <div class="gallery-item"><img src="assets/gallery-5.jpg" alt="Socios moment"></div>
 </div>
         </div>
         <div style="text-align: center; margin-top: 16px; margin-bottom: 40px;">
@@ -193,22 +192,22 @@
 
 
     <!-- JAVASCRIPT -->
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-        });
-    </script>
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+</script>
     <!-- LENIS SMOOTH SCROLL -->
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
     const lenis = new Lenis({
-        duration: 1.2,
+        duration: 1,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothTouch: true,
-        touchMultiplier: 2,
+        smoothTouch: false,
     });
+
     function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
@@ -216,5 +215,115 @@
     requestAnimationFrame(raf);
 </script>
 
+<!-- GSAP ANIMATIONS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+    // ... rest of GSAP code stays the same
+</script>
+   <!-- LENIS SMOOTH SCROLL -->
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+    const lenis = new Lenis({
+        duration: 1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothTouch: false,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+</script>
+
+<!-- GSAP ANIMATIONS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // SLIDE UP - no opacity
+    gsap.utils.toArray([
+        '.about-preview-text',
+        '.expect-card',
+        '.event-card',
+        '.testimonial-inner',
+        '.mailing-inner',
+        '.contact-strip h2',
+        '.contact-strip a',
+        '.section-title'
+    ]).forEach(el => {
+        gsap.fromTo(el,
+            { y: 30 },
+            {
+                y: 0,
+                duration: 0.6,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 90%',
+                    toggleActions: 'play none none none'
+                }
+            }
+        );
+    });
+
+    // IMAGE SCALE - desktop only
+    if (window.innerWidth > 768) {
+        gsap.utils.toArray([
+            '.about-preview-image img',
+            '.event-card-image img',
+            '.gallery-grid img'
+        ]).forEach(img => {
+            gsap.fromTo(img,
+                { scale: 1.05 },
+                {
+                    scale: 1,
+                    duration: 1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: img,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+    }
+    // HERO KEN BURNS
+    gsap.to('.hero', {
+        backgroundSize: '110%',
+        duration: 8,
+        ease: 'power1.inOut',
+        repeat: -1,
+        yoyo: true
+    });
+</script>
+<!-- PAGE TRANSITION -->
+<script>
+    // Fade in on load
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+    });
+
+    // Fade out on link click
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && !href.startsWith('#') && !href.startsWith('mailto')) {
+                e.preventDefault();
+                document.body.classList.remove('loaded');
+                setTimeout(() => {
+    window.location.href = href;
+}, 200);
+            }
+        });
+    });
+<!-- SWUP PAGE TRANSITIONS -->
+<script src="https://unpkg.com/swup@3/dist/swup.min.js"></script>
+<script>
+    const swup = new Swup();
+</script>
 </body>
 </html>

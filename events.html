@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events — Socios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <img src="assets/logo.png" alt="Socios">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="#" class="nav-cta">Join Socios</a>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <div class="page-wrapper">
+
+        <!-- UPCOMING EVENTS -->
+        <section class="events-page-upcoming">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-card-image">
+                        <img src="assets/event-jazz.jpg" alt="Jazz and Conversations">
+                    </div>
+                    <div class="event-card-body">
+                        <h3>Jazz & Conversations</h3>
+                        <p>An evening dedicated to the soulful melody of live jazz and contemporary art discussion</p>
+                        <span class="event-date">October 26, 2024 - 7:00 PM</span>
+                        <a href="event-details.html" class="btn-primary">Get Tickets</a>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-card-image">
+                        <img src="assets/event-movie.jpg" alt="Socios Movie Night">
+                    </div>
+                    <div class="event-card-body">
+                        <h3>Socios Movie Night</h3>
+                        <p>An evening dedicated to the soulful melody of live jazz and contemporary art discussion</p>
+                        <span class="event-date">October 26, 2024 - 7:00 PM</span>
+                        <a href="event-details.html" class="btn-primary">Get Tickets</a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn-dark-outline">See More</a>
+            </div>
+        </section>
+
+        <!-- PAST EVENTS -->
+        <section class="events-page-past">
+            <h2 class="section-title">See Past Events</h2>
+            <div class="past-events-grid">
+                <a href="event-details.html" class="past-event-card">
+                    <img src="assets/event-autumn.jpg" alt="Autumn Salon">
+                    <div class="past-event-overlay">
+                        <span>Autumn Salon</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </a>
+                <a href="event-details.html" class="past-event-card">
+                    <img src="assets/event-masquerade.jpg" alt="Masquerade Ball">
+                    <div class="past-event-overlay">
+                        <span>Masqurade Ball</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div>
+                <a href="index.html" class="footer-logo">
+                    <img src="assets/logo.png" alt="Socios">
+                </a>
+                <div class="footer-socials">
+                    <a href="#">in</a>
+                    <a href="#">ig</a>
+                    <a href="#">tt</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Help & Support</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </footer>
+        <div class="footer-bottom">
+            <p>Socios © 2026, All Rights Reserved</p>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+    </script>
+
+    <!-- LENIS SMOOTH SCROLL -->
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothTouch: false,
+        });
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script>
+
+</body>
+</html>

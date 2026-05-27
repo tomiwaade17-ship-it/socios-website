@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Socios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <img src="assets/logo.png" alt="Socios">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="#" class="nav-cta">Join Socios</a>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+<div id="swup" class="page-wrapper">
+        <!-- ABOUT HERO -->
+        <section class="about-hero">
+            <h1>About Socios</h1>
+            <p>Socios is a social gathering aimed at fostering mingling and interactions based on shared interests.</p>
+            <p>The event provides a space for young professionals and creatives from diverse backgrounds to come together and enjoy music, art, conversation, and other forms of entertainment.</p>
+        </section>
+
+        <!-- ABOUT HERO IMAGE -->
+        <section class="about-hero-image">
+            <img src="assets/about-hero.jpg" alt="Socios gathering">
+        </section>
+
+        <!-- WHY SOCIOS -->
+        <section class="why-socios">
+            <h2 class="section-title">Why Socios?</h2>
+            <p>Professionals and creatives often lack in person opportunities for meaningful connections in a relaxed, accessible setting. Despite a vibrant cultural scene in Budapest, barriers to networking and collaboration persist.</p>
+        </section>
+
+        <!-- WHAT TO EXPECT -->
+        <section class="expect">
+            <h2 class="section-title">What To Expect At Socios</h2>
+            <div class="expect-grid">
+                <div class="expect-card">
+                    <h3>Connect Through Shared Interests</h3>
+                    <p>Our events are designed to spark dialogue. Discover fellow enthusiasts through shared appreciation for culture, art, and music.</p>
+                </div>
+                <div class="expect-card">
+                    <h3>Enjoy The Atmosphere</h3>
+                    <p>Savour exquisite drinks, gourmet bites, and the sophisticated backdrop of Brody House. Let the unique setting enhance your evening.</p>
+                </div>
+                <div class="expect-card">
+                    <h3>Leave Inspired</h3>
+                    <p>Depart with new insights, expanded networks, and a refreshed perspective, already looking forward to the next gathering.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISION & MISSION -->
+        <section class="vision-mission">
+            <div class="vision-image-left">
+                <img src="assets/about-mission-left.jpg" alt="Socios event">
+            </div>
+            <div class="vision-content">
+                <h2 class="section-title">Our Vision & Mission</h2>
+                <p>At Socios, we seek to create a vibrant and engaging social experience where attendees can network, share ideas, and form new connections. By focusing on shared interests—whether in art, music, or culture—the event promotes authentic interactions for young professionals and creatives.</p>
+            </div>
+            <div class="vision-image-right">
+                <img src="assets/about-mission-right.jpg" alt="Socios event">
+            </div>
+        </section>
+
+        <!-- MEET THE ARTISTS -->
+        <section class="meet-artists">
+            <h2 class="section-title">Meet The Artists & Host</h2>
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-image">
+                        <img src="assets/entyce.jpg" alt="Entyce">
+                    </div>
+                    <div class="artist-info">
+                        <h3>Entyce</h3>
+                        <span class="artist-role">Resident DJ and Co-Founder</span>
+                        <p>Entyce is the Resident DJ and Co-Founder of Socios, curating the soundscape with taste, rhythm, and seamless mixes that define the Socios experience.</p>
+                    </div>
+                </div>
+                <div class="artist-card artist-card-dark">
+                    <div class="artist-image">
+                        <img src="assets/aweda.jpg" alt="Aweda">
+                    </div>
+                    <div class="artist-info">
+                        <h3>Aweda</h3>
+                        <span class="artist-role">Host and Co-Founder</span>
+                        <p>Aweda is the Host and Co-Founder of Socios, the voice behind the vibe. With charisma and sharp crowd awareness, he curates the atmosphere and makes every Socios event unforgettable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div>
+                <a href="index.html" class="footer-logo">
+                    <img src="assets/logo.png" alt="Socios">
+                </a>
+                <div class="footer-socials">
+                    <a href="#">in</a>
+                    <a href="#">ig</a>
+                    <a href="#">tt</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Help & Support</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </footer>
+        <div class="footer-bottom">
+            <p>Socios © 2026, All Rights Reserved</p>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+</script>
+
+    <!-- LENIS SMOOTH SCROLL -->
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothTouch: false,
+        });
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script>
+    <!-- PAGE TRANSITION -->
+<script>
+    // Fade in on load
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+    });
+
+    // Fade out on link click
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && !href.startsWith('#') && !href.startsWith('mailto')) {
+                e.preventDefault();
+                document.body.classList.remove('loaded');
+                setTimeout(() => {
+    window.location.href = href;
+}, 200);
+            }
+        });
+    });
+<!-- SWUP PAGE TRANSITIONS -->
+<script src="https://unpkg.com/swup@3/dist/swup.min.js"></script>
+<script>
+    const swup = new Swup();
+</script>
+</body>
+</html>
