@@ -3049,3 +3049,22 @@ body {
 .legal-page {
     padding-top: 120px !important;
 }
+/* ===== TESTIMONIAL SLIDER ===== */
+.testimonial-slider {
+    position: relative;
+    overflow: hidden;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.testimonial-inner {
+    display: none;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    padding: 20px 120px;
+}
+
+.testimonial-inner.active {
+    display: block;
+}

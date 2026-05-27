@@ -109,16 +109,30 @@
     <!-- TESTIMONIAL -->
 <section class="testimonial">
     <h2 class="section-title">Notes From Our Guests</h2>
-    <div class="testimonial-inner">
-        <span class="quote-open">"</span>
-        <p class="testimonial-quote">Professionals and creatives often lack in person opportunities for meaningful connections in a relaxed, accessible setting. Despite a vibrant cultural scene in Budapest, barriers to networking and collaboration persist.</p>
-        <span class="quote-close">"</span>
-        <span class="testimonial-author">Adrian K · Architect</span>
-        <div class="slide-indicators">
-            <span class="active"></span>
-            <span></span>
-            <span></span>
+    <div class="testimonial-slider">
+        <div class="testimonial-inner active">
+            <span class="quote-open">"</span>
+            <p class="testimonial-quote">Professionals and creatives often lack in person opportunities for meaningful connections in a relaxed, accessible setting. Despite a vibrant cultural scene in Budapest, barriers to networking and collaboration persist.</p>
+            <span class="quote-close">"</span>
+            <span class="testimonial-author">Adrian K · Architect</span>
         </div>
+        <div class="testimonial-inner">
+            <span class="quote-open">"</span>
+            <p class="testimonial-quote">Socios gave me something I didn't know I was missing — a room full of people who actually want to connect. The atmosphere was elegant, the conversations were real, and I left with three new collaborators.</p>
+            <span class="quote-close">"</span>
+            <span class="testimonial-author">Mia F · Creative Director</span>
+        </div>
+        <div class="testimonial-inner">
+            <span class="quote-open">"</span>
+            <p class="testimonial-quote">Every detail of the evening was thoughtfully curated. From the music to the setting, it felt intentional without being rigid. I've been to many networking events — Socios is in a different league entirely.</p>
+            <span class="quote-close">"</span>
+            <span class="testimonial-author">James O · Entrepreneur</span>
+        </div>
+    </div>
+    <div class="slide-indicators">
+        <span class="active" data-index="0"></span>
+        <span data-index="1"></span>
+        <span data-index="2"></span>
     </div>
 </section>
 
@@ -198,6 +212,31 @@
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('open');
     });
+    // TESTIMONIAL SLIDER
+const slides = document.querySelectorAll('.testimonial-inner');
+const dots = document.querySelectorAll('.slide-indicators span');
+let current = 0;
+let autoSlide = setInterval(nextSlide, 4000);
+
+function goToSlide(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+}
+
+function nextSlide() {
+    goToSlide((current + 1) % slides.length);
+}
+
+dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+        clearInterval(autoSlide);
+        goToSlide(parseInt(dot.getAttribute('data-index')));
+        autoSlide = setInterval(nextSlide, 4000);
+    });
+});
 </script>
     <!-- LENIS SMOOTH SCROLL -->
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
