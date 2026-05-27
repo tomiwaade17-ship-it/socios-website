@@ -3422,6 +3422,6 @@ body {
 /* ===== GALLERY PAGE HEADER SPACING FIX ===== */
 @media (max-width: 768px) {
     .gallery-page-header {
-        padding-top: 40px !important;
+        padding-top: 52px !important;
     }
 }
