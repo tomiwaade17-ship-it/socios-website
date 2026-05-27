@@ -3195,3 +3195,29 @@ body {
         min-height: 250px;
     }
 }
+/* ===== TESTIMONIAL FIXED HEIGHT ===== */
+.testimonial-slider {
+    min-height: 280px;
+    position: relative;
+}
+
+.testimonial-slider .testimonial-inner {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.testimonial-slider .testimonial-inner.active {
+    position: relative !important;
+}
+
+@media (max-width: 768px) {
+    .testimonial-slider {
+        min-height: 420px;
+    }
+
+    .testimonial-slider .testimonial-inner {
+        min-height: 420px;
+    }
+}
