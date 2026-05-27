@@ -3221,3 +3221,13 @@ body {
         min-height: 420px;
     }
 }
+/* ===== TESTIMONIAL HEIGHT FIX ===== */
+@media (max-width: 768px) {
+    .testimonial-slider {
+        min-height: 320px !important;
+    }
+
+    .testimonial-slider .testimonial-inner {
+        min-height: 320px !important;
+    }
+}
