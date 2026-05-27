@@ -3251,3 +3251,97 @@ body {
         object-position: top !important;
     }
 }
+/* ===== ABOUT PAGE MOBILE FIX ===== */
+@media (max-width: 768px) {
+
+    /* HEADER SPACING */
+    .about-hero {
+        padding: 80px 24px 40px !important;
+    }
+
+    /* HEADING SIZE */
+    .about-hero h1 {
+        font-size: 28px !important;
+    }
+
+    /* BODY TEXT NOT CUT OFF */
+    .about-hero p {
+        display: block !important;
+        -webkit-line-clamp: unset !important;
+        overflow: visible !important;
+        max-width: 100% !important;
+    }
+
+    /* WHY SOCIOS TEXT NOT CUT OFF */
+    .why-socios {
+        padding: 60px 24px !important;
+        max-width: 100% !important;
+    }
+
+    .why-socios p {
+        display: block !important;
+        -webkit-line-clamp: unset !important;
+        overflow: visible !important;
+    }
+
+    /* VISION & MISSION */
+    .vision-mission {
+        grid-template-columns: 1fr !important;
+        padding: 60px 24px !important;
+        gap: 24px !important;
+        background-color: var(--secondary) !important;
+    }
+
+    .vision-image-left,
+    .vision-image-right {
+        display: block !important;
+        height: 250px !important;
+    }
+
+    .vision-image-left img,
+    .vision-image-right img {
+        width: 100% !important;
+        height: 250px !important;
+        object-fit: cover !important;
+    }
+
+    .vision-content {
+        padding: 0 !important;
+    }
+
+    /* MEET ARTISTS */
+    .meet-artists {
+        padding: 60px 24px !important;
+    }
+
+    .artists-grid {
+        grid-template-columns: 1fr !important;
+        padding: 0 !important;
+        gap: 60px !important;
+    }
+
+    .artist-card:nth-child(1) {
+        transform: rotate(-1deg) !important;
+    }
+
+    .artist-card:nth-child(2) {
+        transform: rotate(1deg) !important;
+        margin-top: 0 !important;
+    }
+
+    .artist-image img {
+        height: 300px !important;
+    }
+
+    .artist-info {
+        padding: 16px !important;
+    }
+
+    .artist-info h3 {
+        font-size: 16px !important;
+    }
+
+    .artist-info p {
+        font-size: 13px !important;
+    }
+}
