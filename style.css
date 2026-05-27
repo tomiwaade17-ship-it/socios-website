@@ -3431,3 +3431,14 @@ body {
         padding-bottom: 24px !important;
     }
 }
+/* ===== GALLERY PAGE HEADER BOTTOM SPACING FIX ===== */
+@media (max-width: 768px) {
+    .gallery-page-header {
+        padding-bottom: 40px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .gallery-page-grid {
+        padding-top: 0 !important;
+    }
+}
