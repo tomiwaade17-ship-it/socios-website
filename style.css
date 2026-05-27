@@ -3148,3 +3148,12 @@ body {
         line-height: 1.2;
     }
 }
+/* ===== HERO HEADING MOBILE FIX ===== */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 26px;
+        line-height: 1.35;
+        max-width: 95%;
+        margin: 0 auto 20px;
+    }
+}
