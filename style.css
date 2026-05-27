@@ -3097,3 +3097,10 @@ body {
     position: relative;
     opacity: 1;
 }
+/* ===== HERO MOBILE FIX ===== */
+@media (max-width: 768px) {
+    .hero {
+        background-size: cover !important;
+        background-position: center !important;
+    }
+}

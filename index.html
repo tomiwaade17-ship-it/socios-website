@@ -330,7 +330,8 @@ dots.forEach(dot => {
             );
         });
     }
-    // HERO KEN BURNS
+    // HERO KEN BURNS - desktop only
+if (window.innerWidth > 768) {
     gsap.to('.hero', {
         backgroundSize: '110%',
         duration: 8,
@@ -338,6 +339,7 @@ dots.forEach(dot => {
         repeat: -1,
         yoyo: true
     });
+}
 </script>
 <!-- PAGE TRANSITION -->
 <script>
