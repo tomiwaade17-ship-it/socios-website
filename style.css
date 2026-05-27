@@ -3076,3 +3076,24 @@ body {
 .testimonial-slider .testimonial-inner.active {
     display: block !important;
 }
+/* ===== TESTIMONIAL SLIDER HEIGHT FIX ===== */
+.testimonial-slider {
+    position: relative;
+    min-height: 300px;
+}
+
+.testimonial-slider .testimonial-inner {
+    display: none !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.testimonial-slider .testimonial-inner.active {
+    display: block !important;
+    position: relative;
+    opacity: 1;
+}
