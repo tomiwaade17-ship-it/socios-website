@@ -3157,3 +3157,41 @@ body {
         margin: 0 auto 20px;
     }
 }
+/* ===== TESTIMONIAL MOBILE FIX ===== */
+@media (max-width: 768px) {
+    .testimonial {
+        padding: 60px 24px;
+        overflow: hidden;
+    }
+
+    .testimonial-inner {
+        padding: 20px 40px;
+        max-width: 100%;
+    }
+
+    .testimonial-quote {
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    .quote-open {
+        font-size: 60px;
+        left: 0;
+        top: 0;
+    }
+
+    .quote-close {
+        font-size: 60px;
+        right: 0;
+        bottom: 20px;
+    }
+
+    .testimonial-author {
+        font-size: 14px;
+    }
+
+    .testimonial-slider {
+        overflow: hidden;
+        min-height: 250px;
+    }
+}
