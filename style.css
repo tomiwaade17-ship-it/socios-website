@@ -3425,3 +3425,9 @@ body {
         padding-top: 52px !important;
     }
 }
+/* ===== GALLERY PAGE HEADER BOTTOM SPACING ===== */
+@media (max-width: 768px) {
+    .gallery-page-header {
+        padding-bottom: 24px !important;
+    }
+}
