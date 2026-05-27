@@ -3345,3 +3345,13 @@ body {
         font-size: 13px !important;
     }
 }
+/* ===== ABOUT PAGE SECTION HEADINGS MOBILE ===== */
+@media (max-width: 768px) {
+    .about-hero h1,
+    .why-socios .section-title,
+    .vision-mission .section-title,
+    .meet-artists .section-title,
+    .expect .section-title {
+        font-size: 28px !important;
+    }
+}
