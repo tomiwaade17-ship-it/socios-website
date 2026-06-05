@@ -30,45 +30,45 @@
 
     <div class="page-wrapper">
 
-      <!-- UPCOMING EVENTS -->
-<section class="upcoming-events-new">
-    <h2 class="section-title">Upcoming Events</h2>
-    <div class="upcoming-events-hero" id="upcomingSection">
-        <div class="upcoming-events-bg" id="upcomingBg"></div>
-        <div class="upcoming-events-overlay"></div>
-        <div class="upcoming-events-card" id="upcomingCard">
-            <span class="upcoming-label">Upcoming Event</span>
-            <div class="upcoming-card-image" id="upcomingCardImage"></div>
-            <h3 class="upcoming-card-title" id="upcomingTitle"></h3>
-            <p class="upcoming-card-tagline" id="upcomingTagline"></p>
-            <span class="upcoming-card-date" id="upcomingDate"></span>
-            <a href="event-details.html" class="upcoming-card-btn" id="upcomingBtn">Get Tickets →</a>
-        </div>
-    </div>
-</section>
-                     
+        <!-- UPCOMING EVENTS -->
+        <section class="upcoming-events-new">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="upcoming-events-hero" id="upcomingSection">
+                <div class="upcoming-events-bg" id="upcomingBg"></div>
+                <div class="upcoming-events-overlay"></div>
+                <div class="upcoming-events-card" id="upcomingCard">
+                    <span class="upcoming-label">Upcoming Event</span>
+                    <div class="upcoming-card-image" id="upcomingCardImage"></div>
+                    <h3 class="upcoming-card-title" id="upcomingTitle"></h3>
+                    <p class="upcoming-card-tagline" id="upcomingTagline"></p>
+                    <span class="upcoming-card-date" id="upcomingDate"></span>
+                    <a href="event-details.html" class="upcoming-card-btn" id="upcomingBtn">Get Tickets →</a>
+                </div>
+            </div>
+        </section>
+
         <!-- PAST EVENTS -->
         <section class="events-page-past">
             <h2 class="section-title">See Past Events</h2>
             <div class="past-events-grid">
-                <a href="gallery-details.html" class="past-event-card past-event-bw">
-    <img src="assets/event-autumn.jpg" alt="Autumn Salon">
-    <div class="past-event-overlay">
-        <span>Autumn Salon</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-        </svg>
-    </div>
-</a>
-<a href="gallery-details.html" class="past-event-card past-event-bw">
-    <img src="assets/event-masquerade.jpg" alt="Masquerade Ball">
-    <div class="past-event-overlay">
-        <span>Masqurade Ball</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-        </svg>
-    </div>
-</a>
+                <a href="gallery-details.html?collection=Autumn Salon" class="past-event-card past-event-bw">
+                    <img src="assets/event-autumn.jpg" alt="Autumn Salon">
+                    <div class="past-event-overlay">
+                        <span>Autumn Salon</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </a>
+                <a href="gallery-details.html?collection=Masquerade Ball" class="past-event-card past-event-bw">
+                    <img src="assets/event-masquerade.jpg" alt="Masquerade Ball">
+                    <div class="past-event-overlay">
+                        <span>Masquerade Ball</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </a>
             </div>
         </section>
 
@@ -116,31 +116,32 @@
             navLinks.classList.toggle('open');
         });
     </script>
-<!-- GOOGLE SHEETS DATA -->
-<script src="data.js"></script>
-<script>
-    async function loadEvents() {
-        const events = await fetchSheet(SHEETS.events);
-        if (!events || events.length === 0) return;
-        const event = events[0];
 
-        document.getElementById('upcomingBg').style.backgroundImage = `url('${event.image}')`;
-        
-        const cardImg = document.getElementById('upcomingCardImage');
-        cardImg.style.backgroundImage = `url('${event.image}')`;
-        cardImg.style.width = '200px';
-        cardImg.style.height = '200px';
-        cardImg.style.backgroundSize = 'cover';
-        cardImg.style.backgroundPosition = 'center';
-        cardImg.style.display = 'block';
+    <!-- GOOGLE SHEETS DATA -->
+    <script src="data.js"></script>
+    <script>
+        async function loadEvents() {
+            const events = await fetchSheet(SHEETS.events);
+            if (!events || events.length === 0) return;
+            const event = events[0];
 
-        document.getElementById('upcomingTitle').textContent = event.title;
-        document.getElementById('upcomingTagline').textContent = event.tagline;
-        document.getElementById('upcomingDate').innerHTML = event.date.toUpperCase() + '<br>' + event.time.toUpperCase();
-        document.getElementById('upcomingBtn').href = event.link;
-    }
-    loadEvents();
-</script>
+            document.getElementById('upcomingBg').style.backgroundImage = `url('${event.image}')`;
+
+            const cardImg = document.getElementById('upcomingCardImage');
+            cardImg.style.backgroundImage = `url('${event.image}')`;
+            cardImg.style.width = '200px';
+            cardImg.style.height = '200px';
+            cardImg.style.backgroundSize = 'cover';
+            cardImg.style.backgroundPosition = 'center';
+            cardImg.style.display = 'block';
+
+            document.getElementById('upcomingTitle').textContent = event.title;
+            document.getElementById('upcomingTagline').textContent = event.tagline;
+            document.getElementById('upcomingDate').innerHTML = event.date.toUpperCase() + '<br>' + event.time.toUpperCase();
+            document.getElementById('upcomingBtn').href = event.link;
+        }
+        loadEvents();
+    </script>
 
     <!-- LENIS SMOOTH SCROLL -->
     <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
@@ -156,5 +157,6 @@
         }
         requestAnimationFrame(raf);
     </script>
+
 </body>
 </html>
