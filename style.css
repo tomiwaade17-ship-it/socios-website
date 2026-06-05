@@ -4087,3 +4087,10 @@ svg.paper-tear-svg {
         font-size: 13px !important;
     }
 }
+/* ===== UPCOMING HERO EQUAL PADDING FIX ===== */
+@media (max-width: 768px) {
+    .upcoming-events-hero {
+        height: 860px !important;
+        padding: 40px 24px !important;
+    }
+}
