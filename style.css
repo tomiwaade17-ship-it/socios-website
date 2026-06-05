@@ -4054,3 +4054,11 @@ svg.paper-tear-svg {
         margin-top: 48px !important;
     }
 }
+/* ===== UPCOMING EVENTS MOBILE HEIGHT FIX ===== */
+@media (max-width: 768px) {
+    .upcoming-events-hero {
+        height: 750px !important;
+        padding: 40px 24px !important;
+        align-items: center !important;
+    }
+}
