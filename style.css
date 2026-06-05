@@ -4044,3 +4044,13 @@ svg.paper-tear-svg {
 .paper-card {
     margin-top: 0 !important;
 }
+/* ===== PAPER CARDS MOBILE SPACING FIX ===== */
+@media (max-width: 768px) {
+    .expect-grid {
+        gap: 48px !important;
+    }
+
+    .paper-card {
+        margin-top: 48px !important;
+    }
+}
