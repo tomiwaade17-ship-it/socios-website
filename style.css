@@ -4062,3 +4062,28 @@ svg.paper-tear-svg {
         align-items: center !important;
     }
 }
+/* ===== UPCOMING CARD MOBILE HEIGHT FIX ===== */
+@media (max-width: 768px) {
+    .upcoming-events-hero {
+        height: 780px !important;
+        padding: 40px 24px !important;
+    }
+
+    .upcoming-events-card {
+        max-height: 660px !important;
+        overflow: hidden !important;
+    }
+
+    .upcoming-card-image {
+        width: 140px !important;
+        height: 140px !important;
+    }
+
+    .upcoming-card-title {
+        font-size: 18px !important;
+    }
+
+    .upcoming-card-tagline {
+        font-size: 13px !important;
+    }
+}
