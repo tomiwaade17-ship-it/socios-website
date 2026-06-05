@@ -4131,3 +4131,27 @@ svg.paper-tear-svg {
         overflow: visible !important;
     }
 }
+/* ===== UPCOMING CARD MOBILE SLIGHT INCREASE ===== */
+@media (max-width: 768px) {
+    .upcoming-card-image {
+        width: 140px !important;
+        height: 140px !important;
+    }
+
+    .upcoming-card-title {
+        font-size: 18px !important;
+    }
+
+    .upcoming-card-tagline {
+        font-size: 13px !important;
+    }
+
+    .upcoming-card-date {
+        font-size: 12px !important;
+    }
+
+    .upcoming-events-card {
+        gap: 12px !important;
+        padding: 28px !important;
+    }
+}
