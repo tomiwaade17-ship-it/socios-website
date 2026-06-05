@@ -4094,3 +4094,40 @@ svg.paper-tear-svg {
         padding: 40px 24px !important;
     }
 }
+/* ===== UPCOMING CARD MOBILE COMPACT ===== */
+@media (max-width: 768px) {
+    .upcoming-events-hero {
+        height: 700px !important;
+        padding: 40px 24px !important;
+    }
+
+    .upcoming-card-image {
+        width: 120px !important;
+        height: 120px !important;
+    }
+
+    .upcoming-card-title {
+        font-size: 16px !important;
+    }
+
+    .upcoming-card-tagline {
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+    }
+
+    .upcoming-card-date {
+        font-size: 11px !important;
+    }
+
+    .upcoming-card-btn {
+        padding: 10px 20px !important;
+        font-size: 10px !important;
+    }
+
+    .upcoming-events-card {
+        gap: 10px !important;
+        padding: 24px !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+}
