@@ -4159,3 +4159,17 @@ svg.paper-tear-svg {
 .gallery-details-item img {
     object-position: top;
 }
+/* ===== UPCOMING CARD IMAGE SIZE ===== */
+.upcoming-card-image {
+    width: 200px !important;
+    height: 250px !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+@media (max-width: 768px) {
+    .upcoming-card-image {
+        width: 140px !important;
+        height: 175px !important;
+    }
+}

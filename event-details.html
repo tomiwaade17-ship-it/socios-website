@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jazz & Conversations — Socios</title>
+    <title>Event — Socios</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -37,51 +37,55 @@
 
         <!-- EVENT HERO IMAGE -->
         <section class="event-detail-hero">
-            <img src="assets/event-jazz.jpg" alt="Jazz and Conversations">
+            <img id="eventHeroImg" src="" alt="" style="object-position: top;">
         </section>
 
         <!-- EVENT CONTENT -->
         <section class="event-detail-content">
             <div class="event-detail-main">
-                <h1>Jazz & Conversations</h1>
-                <p class="event-detail-tagline">An intimate Socios evening where music meets meaningful connection</p>
-                <p class="event-detail-description">Jazz and Conversations is an evening designed for those who appreciate moments that unfold slowly and conversations that linger. This Socios gathering invites you into a space where sound, atmosphere, and human connection move in harmony.</p>
+                <h1 id="eventTitle"></h1>
+                <p class="event-detail-tagline" id="eventTagline"></p>
+                <p class="event-detail-description" id="eventDescription"></p>
 
                 <!-- EVENT META -->
                 <div class="event-meta">
                     <div class="event-meta-item">
                         <span class="event-meta-label">DATE:</span>
-                        <span class="event-meta-value">Saturday, 16th November, 2025</span>
+                        <span class="event-meta-value" id="eventDate"></span>
                     </div>
                     <div class="event-meta-item">
                         <span class="event-meta-label">TIME:</span>
-                        <span class="event-meta-value">6:00 PM – 10:00 PM</span>
+                        <span class="event-meta-value" id="eventTime"></span>
                     </div>
                     <div class="event-meta-item">
                         <span class="event-meta-label">VENUE:</span>
-                        <span class="event-meta-value">Brody House, Budapest</span>
+                        <span class="event-meta-value" id="eventVenue"></span>
                     </div>
                     <div class="event-meta-item">
                         <span class="event-meta-label">DRESS CODE:</span>
-                        <span class="event-meta-value">Smart casual with a touch of elegance</span>
+                        <span class="event-meta-value" id="eventDresscode"></span>
                     </div>
+                </div>
+
+                <!-- WHAT TO EXPECT -->
+                <div class="event-detail-section" id="eventWhatToExpectSection">
+                    <h2>What To Expect</h2>
+                    <p id="eventWhatToExpect"></p>
                 </div>
 
                 <!-- HOST & MUSIC -->
                 <div class="event-detail-section">
                     <h2>Host & Music</h2>
-                    <p>Curated by Socios</p>
-                    <p>Featuring live jazz performances and hosts selected to complement the tone of the evening.</p>
+                    <p id="eventHostAndMusic"></p>
                 </div>
 
                 <!-- TICKETS -->
                 <div class="event-detail-section">
                     <h2>Tickets</h2>
-                    <p>Limited spots available to preserve the intimacy of the experience.</p>
-                    <p>Reserve your spot early.</p>
+                    <p id="eventTickets"></p>
                 </div>
 
-                <a href="#" class="btn-primary event-ticket-btn">Get Tickets</a>
+                <a id="eventTicketBtn" href="#" class="btn-primary event-ticket-btn">Get Tickets</a>
 
             </div>
         </section>
@@ -140,38 +144,108 @@
     </script>
 
     <script>
-        async function loadPastEvents() {
+        const EVENT_DETAILS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=0&single=true&output=csv';
+        const GALLERY_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=1789159689&single=true&output=csv';
+
+        function parseCSV(text) {
+            const rows = [];
+            const lines = text.split('\n');
+            for (let i = 0; i < lines.length; i++) {
+                const row = [];
+                let current = '';
+                let inQuotes = false;
+                const line = lines[i];
+                for (let j = 0; j < line.length; j++) {
+                    const char = line[j];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        row.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                row.push(current.trim());
+                rows.push(row);
+            }
+            return rows;
+        }
+
+        async function fetchCSV(url) {
             try {
-                const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=1789159689&single=true&output=csv');
+                const response = await fetch(url);
                 const text = await response.text();
-                const rows = text.split('\n');
-                const headers = rows[0].split(',').map(h => h.replace(/"/g, '').trim().toLowerCase());
-                const data = rows.slice(1)
-                    .filter(row => row.trim())
+                const rows = parseCSV(text);
+                if (rows.length < 2) return [];
+                const headers = rows[0].map(h => h.replace(/"/g, '').trim().toLowerCase());
+                return rows.slice(1)
+                    .filter(row => row.some(cell => cell !== ''))
                     .map(row => {
-                        const values = row.split(',').map(v => v.replace(/"/g, '').trim());
                         const obj = {};
-                        headers.forEach((h, i) => obj[h] = values[i] || '');
+                        headers.forEach((h, i) => {
+                            obj[h] = (row[i] || '').replace(/"/g, '').trim();
+                        });
                         return obj;
                     });
-
-                const grid = document.getElementById('pastEventsGrid');
-                grid.innerHTML = data.map(item => `
-                    <a href="gallery-details.html?collection=${encodeURIComponent(item.collection)}" class="past-event-card past-event-bw">
-                        <img src="${item.coverimage}" alt="${item.collection}" loading="lazy" style="object-position: top;">
-                        <div class="past-event-overlay">
-                            <span>${item.collection}</span>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </div>
-                    </a>
-                `).join('');
             } catch (error) {
-                console.error('Error loading past events:', error);
+                console.error('Error fetching CSV:', error);
+                return [];
             }
         }
 
+        async function loadEventDetails() {
+            const data = await fetchCSV(EVENT_DETAILS_URL);
+            if (!data.length) return;
+
+            // Always use first row as the current event
+            const event = data[0];
+
+            // Page title
+            document.title = event.title + ' — Socios';
+
+            // Hero image
+            if (event.image) {
+                const heroImg = document.getElementById('eventHeroImg');
+                heroImg.src = event.image;
+                heroImg.alt = event.title;
+            }
+
+            // Text content
+            document.getElementById('eventTitle').textContent = event.title;
+            document.getElementById('eventTagline').textContent = event.tagline;
+            document.getElementById('eventDescription').textContent = event.description;
+            document.getElementById('eventDate').textContent = event.date;
+            document.getElementById('eventTime').textContent = event.time;
+            document.getElementById('eventVenue').textContent = event.venue;
+            document.getElementById('eventDresscode').textContent = event.dresscode;
+            document.getElementById('eventWhatToExpect').textContent = event.whattoexpect;
+            document.getElementById('eventHostAndMusic').textContent = event.hostandmusic;
+            document.getElementById('eventTickets').textContent = event.tickets;
+
+            // Ticket button
+            if (event.link) {
+                document.getElementById('eventTicketBtn').href = event.link;
+            }
+        }
+
+        async function loadPastEvents() {
+            const data = await fetchCSV(GALLERY_URL);
+            const grid = document.getElementById('pastEventsGrid');
+            grid.innerHTML = data.map(item => `
+                <a href="gallery-details.html?collection=${encodeURIComponent(item.collection)}" class="past-event-card past-event-bw">
+                    <img src="${item.coverimage}" alt="${item.collection}" loading="lazy" style="object-position: top;">
+                    <div class="past-event-overlay">
+                        <span>${item.collection}</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        loadEventDetails();
         loadPastEvents();
     </script>
 
