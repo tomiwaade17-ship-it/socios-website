@@ -37,28 +37,8 @@
 
         <!-- GALLERY GRID -->
         <section class="gallery-page-grid">
-            <div class="gallery-page-cards">
-
-                <a href="gallery-details.html?collection=Autumn Salon" class="gallery-page-card">
-                    <img src="assets/event-autumn.jpg" alt="Autumn Salon">
-                    <div class="gallery-page-overlay">
-                        <span>Autumn Salon</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                        </svg>
-                    </div>
-                </a>
-
-                <a href="gallery-details.html?collection=Masquerade Ball" class="gallery-page-card">
-                    <img src="assets/event-masquerade.jpg" alt="Masquerade Ball">
-                    <div class="gallery-page-overlay">
-                        <span>Masquerade Ball</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                        </svg>
-                    </div>
-                </a>
-
+            <div class="gallery-page-cards" id="galleryCards">
+                <!-- populated by JS from Sheets -->
             </div>
         </section>
 
@@ -105,6 +85,73 @@
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('open');
         });
+    </script>
+
+    <script>
+        const GALLERY_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=1789159689&single=true&output=csv';
+
+        function parseCSV(text) {
+            const rows = [];
+            const lines = text.split('\n');
+            for (let i = 0; i < lines.length; i++) {
+                const row = [];
+                let current = '';
+                let inQuotes = false;
+                const line = lines[i];
+                for (let j = 0; j < line.length; j++) {
+                    const char = line[j];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        row.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                row.push(current.trim());
+                rows.push(row);
+            }
+            return rows;
+        }
+
+        async function loadGallery() {
+            try {
+                const response = await fetch(GALLERY_SHEET_URL);
+                const text = await response.text();
+                const rows = parseCSV(text);
+                if (rows.length < 2) return;
+
+                const headers = rows[0].map(h => h.replace(/"/g, '').trim().toLowerCase());
+                const data = rows.slice(1)
+                    .filter(row => row.some(cell => cell !== ''))
+                    .map(row => {
+                        const obj = {};
+                        headers.forEach((header, i) => {
+                            obj[header] = (row[i] || '').replace(/"/g, '').trim();
+                        });
+                        return obj;
+                    });
+
+                const container = document.getElementById('galleryCards');
+                container.innerHTML = data.map(item => `
+                    <a href="gallery-details.html?collection=${encodeURIComponent(item.collection)}" class="gallery-page-card">
+                        <img src="${item.coverimage}" alt="${item.collection}">
+                        <div class="gallery-page-overlay">
+                            <span>${item.collection}</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </div>
+                    </a>
+                `).join('');
+
+            } catch (error) {
+                console.error('Error loading gallery:', error);
+            }
+        }
+
+        loadGallery();
     </script>
 
     <!-- LENIS SMOOTH SCROLL -->
