@@ -89,25 +89,8 @@
         <!-- PAST EVENTS -->
         <section class="events-page-past">
             <h2 class="section-title">See Past Events</h2>
-            <div class="past-events-grid">
-                <a href="gallery-details.html?collection=Autumn Salon" class="past-event-card past-event-bw">
-                    <img src="assets/event-autumn.jpg" alt="Autumn Salon">
-                    <div class="past-event-overlay">
-                        <span>Autumn Salon</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                        </svg>
-                    </div>
-                </a>
-                <a href="gallery-details.html?collection=Masquerade Ball" class="past-event-card past-event-bw">
-                    <img src="assets/event-masquerade.jpg" alt="Masquerade Ball">
-                    <div class="past-event-overlay">
-                        <span>Masquerade Ball</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                        </svg>
-                    </div>
-                </a>
+            <div class="past-events-grid" id="pastEventsGrid">
+                <!-- populated by JS from Gallery sheet -->
             </div>
         </section>
 
@@ -154,6 +137,42 @@
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('open');
         });
+    </script>
+
+    <script>
+        async function loadPastEvents() {
+            try {
+                const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=1789159689&single=true&output=csv');
+                const text = await response.text();
+                const rows = text.split('\n');
+                const headers = rows[0].split(',').map(h => h.replace(/"/g, '').trim().toLowerCase());
+                const data = rows.slice(1)
+                    .filter(row => row.trim())
+                    .map(row => {
+                        const values = row.split(',').map(v => v.replace(/"/g, '').trim());
+                        const obj = {};
+                        headers.forEach((h, i) => obj[h] = values[i] || '');
+                        return obj;
+                    });
+
+                const grid = document.getElementById('pastEventsGrid');
+                grid.innerHTML = data.map(item => `
+                    <a href="gallery-details.html?collection=${encodeURIComponent(item.collection)}" class="past-event-card past-event-bw">
+                        <img src="${item.coverimage}" alt="${item.collection}" loading="lazy" style="object-position: top;">
+                        <div class="past-event-overlay">
+                            <span>${item.collection}</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </div>
+                    </a>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading past events:', error);
+            }
+        }
+
+        loadPastEvents();
     </script>
 
     <!-- LENIS SMOOTH SCROLL -->
