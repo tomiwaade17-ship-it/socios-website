@@ -33,7 +33,7 @@
         <!-- GALLERY DETAILS HERO -->
         <section class="gallery-details-hero">
             <div class="gallery-details-hero-overlay"></div>
-            <img id="galleryHeroImg" src="assets/event-autumn.jpg" alt="">
+            <img id="galleryHeroImg" src="assets/event-autumn.jpg" alt="" loading="eager" style="object-position: top;">
             <h1 id="galleryTitle">Gallery</h1>
         </section>
 
@@ -156,10 +156,7 @@
             document.title = collection + ' — Socios';
 
             const galleries = await fetchGallerySheet(GALLERY_SHEETS.gallery);
-            console.log('galleries:', galleries);
-
             const match = galleries.find(g => g.collection === collection);
-            console.log('match:', match);
 
             if (match) {
                 if (match.link) {
@@ -177,7 +174,7 @@
             if (images.length) {
                 grid.innerHTML = images.map((img, i) => `
                     <div class="gallery-details-item ${i === 1 ? 'tall' : ''}">
-                        <img src="${img.image}" alt="${collection}">
+                        <img src="${img.image}" alt="${collection}" loading="lazy" style="object-position: top;">
                     </div>
                 `).join('');
             }

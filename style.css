@@ -4155,3 +4155,7 @@ svg.paper-tear-svg {
         padding: 28px !important;
     }
 }
+/* ===== GALLERY DETAILS IMAGE POSITION FIX ===== */
+.gallery-details-item img {
+    object-position: top;
+}

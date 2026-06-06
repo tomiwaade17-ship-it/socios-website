@@ -136,7 +136,7 @@
                 const container = document.getElementById('galleryCards');
                 container.innerHTML = data.map(item => `
                     <a href="gallery-details.html?collection=${encodeURIComponent(item.collection)}" class="gallery-page-card">
-                        <img src="${item.coverimage}" alt="${item.collection}">
+                        <img src="${item.coverimage}" alt="${item.collection}" loading="lazy" style="object-position: top;">
                         <div class="gallery-page-overlay">
                             <span>${item.collection}</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
