@@ -8,21 +8,54 @@ const SHEETS = {
     eventDetails: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=0&single=true&output=csv'
 };
 
-// Parse CSV to array of objects
+// Proper CSV parser — handles quoted fields, commas inside URLs, empty cells
+function parseCSV(text) {
+    const rows = [];
+    const lines = text.split('\n');
+
+    for (let i = 0; i < lines.length; i++) {
+        const row = [];
+        let current = '';
+        let inQuotes = false;
+        const line = lines[i];
+
+        for (let j = 0; j < line.length; j++) {
+            const char = line[j];
+            if (char === '"') {
+                inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+                row.push(current.trim());
+                current = '';
+            } else {
+                current += char;
+            }
+        }
+        row.push(current.trim());
+        rows.push(row);
+    }
+
+    return rows;
+}
+
 async function fetchSheet(url) {
     try {
         const response = await fetch(url);
         const text = await response.text();
-        const rows = text.split('\n');
-        const headers = rows[0].split(',').map(h => h.trim().replace(/"/g, ''));
-        const data = rows.slice(1).filter(row => row.trim()).map(row => {
-            const values = row.match(/(".*?"|[^,]+)(?=,|$)/g) || [];
-            const obj = {};
-            headers.forEach((header, i) => {
-                obj[header] = values[i] ? values[i].replace(/"/g, '').trim() : '';
+        const rows = parseCSV(text);
+
+        if (rows.length < 2) return [];
+
+        const headers = rows[0].map(h => h.replace(/"/g, '').trim().toLowerCase());
+        const data = rows.slice(1)
+            .filter(row => row.some(cell => cell !== ''))
+            .map(row => {
+                const obj = {};
+                headers.forEach((header, i) => {
+                    obj[header] = (row[i] || '').replace(/"/g, '').trim();
+                });
+                return obj;
             });
-            return obj;
-        });
+
         return data;
     } catch (error) {
         console.error('Error fetching sheet:', error);
