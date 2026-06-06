@@ -5,6 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery — Socios</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .gallery-details-hero img {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .gallery-details-hero img.loaded {
+            opacity: 1;
+        }
+        .gallery-skeleton-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 280px 280px;
+            gap: 8px;
+        }
+        .skeleton-item {
+            background: linear-gradient(90deg, #e8e4dc 25%, #f0ece4 50%, #e8e4dc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        .skeleton-item:nth-child(2) {
+            grid-row: 1 / 3;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        @media (max-width: 768px) {
+            .gallery-skeleton-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+            .skeleton-item {
+                height: 180px;
+            }
+            .skeleton-item:nth-child(2) {
+                grid-row: auto;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -33,14 +72,21 @@
         <!-- GALLERY DETAILS HERO -->
         <section class="gallery-details-hero">
             <div class="gallery-details-hero-overlay"></div>
-            <img id="galleryHeroImg" src="assets/event-autumn.jpg" alt="" loading="eager" style="object-position: top;">
-            <h1 id="galleryTitle">Gallery</h1>
+            <img id="galleryHeroImg" src="" alt="" style="object-position: top;">
+            <h1 id="galleryTitle"></h1>
         </section>
 
         <!-- GALLERY DETAILS GRID -->
         <section class="gallery-details-section">
             <div class="gallery-details-grid" id="galleryGrid">
-                <!-- populated by JS from Sheets -->
+                <!-- loading skeleton -->
+                <div class="gallery-skeleton-grid">
+                    <div class="skeleton-item"></div>
+                    <div class="skeleton-item"></div>
+                    <div class="skeleton-item"></div>
+                    <div class="skeleton-item"></div>
+                    <div class="skeleton-item"></div>
+                </div>
             </div>
 
             <div style="text-align: center; margin-top: 40px; margin-bottom: 60px;">
@@ -152,6 +198,7 @@
             const collection = params.get('collection');
             if (!collection) return;
 
+            // Set title immediately from URL param — no flash
             document.getElementById('galleryTitle').textContent = collection;
             document.title = collection + ' — Socios';
 
@@ -163,8 +210,12 @@
                     document.getElementById('galleryExternalLink').href = match.link;
                 }
                 if (match.coverimage) {
-                    document.getElementById('galleryHeroImg').src = match.coverimage;
-                    document.getElementById('galleryHeroImg').alt = collection;
+                    const heroImg = document.getElementById('galleryHeroImg');
+                    heroImg.src = match.coverimage;
+                    heroImg.alt = collection;
+                    heroImg.onload = () => heroImg.classList.add('loaded');
+                    // In case image already cached
+                    if (heroImg.complete) heroImg.classList.add('loaded');
                 }
             }
 
