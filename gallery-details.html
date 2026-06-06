@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autumn Salon — Socios</title>
+    <title>Gallery — Socios</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -33,35 +33,18 @@
         <!-- GALLERY DETAILS HERO -->
         <section class="gallery-details-hero">
             <div class="gallery-details-hero-overlay"></div>
-            <img src="assets/event-autumn.jpg" alt="Autumn Salon">
-            <h1>Autumn Salon</h1>
+            <img id="galleryHeroImg" src="assets/event-autumn.jpg" alt="">
+            <h1 id="galleryTitle">Gallery</h1>
         </section>
 
         <!-- GALLERY DETAILS GRID -->
         <section class="gallery-details-section">
-            <div class="gallery-details-grid">
-                <div class="gallery-details-item">
-                    <img src="assets/gallery-1.jpg" alt="Autumn Salon">
-                </div>
-                <div class="gallery-details-item tall">
-                    <img src="assets/gallery-3.jpg" alt="Autumn Salon">
-                </div>
-                <div class="gallery-details-item">
-                    <img src="assets/gallery-2.jpg" alt="Autumn Salon">
-                </div>
-                <div class="gallery-details-item">
-                    <img src="assets/gallery-5.jpg" alt="Autumn Salon">
-                </div>
-                <div class="gallery-details-item">
-                    <img src="assets/gallery-4.jpg" alt="Autumn Salon">
-                </div>
-                <div class="gallery-details-item">
-                    <img src="assets/gallery-6.jpg" alt="Autumn Salon">
-                </div>
+            <div class="gallery-details-grid" id="galleryGrid">
+                <!-- populated by JS from Sheets -->
             </div>
 
             <div style="text-align: center; margin-top: 40px; margin-bottom: 60px;">
-                <a href="#" class="btn-dark-outline">Explore Full Gallery</a>
+                <a id="galleryExternalLink" href="#" target="_blank" class="btn-dark-outline">Explore Full Gallery</a>
             </div>
         </section>
 
@@ -108,6 +91,99 @@
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('open');
         });
+    </script>
+
+    <script>
+        const GALLERY_SHEETS = {
+            gallery: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=1789159689&single=true&output=csv',
+            galleryDetails: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=30924486&single=true&output=csv'
+        };
+
+        function parseCSV(text) {
+            const rows = [];
+            const lines = text.split('\n');
+            for (let i = 0; i < lines.length; i++) {
+                const row = [];
+                let current = '';
+                let inQuotes = false;
+                const line = lines[i];
+                for (let j = 0; j < line.length; j++) {
+                    const char = line[j];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        row.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                row.push(current.trim());
+                rows.push(row);
+            }
+            return rows;
+        }
+
+        async function fetchGallerySheet(url) {
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                const rows = parseCSV(text);
+                if (rows.length < 2) return [];
+                const headers = rows[0].map(h => h.replace(/"/g, '').trim().toLowerCase());
+                const data = rows.slice(1)
+                    .filter(row => row.some(cell => cell !== ''))
+                    .map(row => {
+                        const obj = {};
+                        headers.forEach((header, i) => {
+                            obj[header] = (row[i] || '').replace(/"/g, '').trim();
+                        });
+                        return obj;
+                    });
+                return data;
+            } catch (error) {
+                console.error('Error fetching sheet:', error);
+                return [];
+            }
+        }
+
+        async function loadGalleryDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const collection = params.get('collection');
+            if (!collection) return;
+
+            document.getElementById('galleryTitle').textContent = collection;
+            document.title = collection + ' — Socios';
+
+            const galleries = await fetchGallerySheet(GALLERY_SHEETS.gallery);
+            console.log('galleries:', galleries);
+
+            const match = galleries.find(g => g.collection === collection);
+            console.log('match:', match);
+
+            if (match) {
+                if (match.link) {
+                    document.getElementById('galleryExternalLink').href = match.link;
+                }
+                if (match.coverimage) {
+                    document.getElementById('galleryHeroImg').src = match.coverimage;
+                    document.getElementById('galleryHeroImg').alt = collection;
+                }
+            }
+
+            const details = await fetchGallerySheet(GALLERY_SHEETS.galleryDetails);
+            const images = details.filter(d => d.collection === collection);
+            const grid = document.getElementById('galleryGrid');
+            if (images.length) {
+                grid.innerHTML = images.map((img, i) => `
+                    <div class="gallery-details-item ${i === 1 ? 'tall' : ''}">
+                        <img src="${img.image}" alt="${collection}">
+                    </div>
+                `).join('');
+            }
+        }
+
+        loadGalleryDetails();
     </script>
 
     <!-- LENIS SMOOTH SCROLL -->
