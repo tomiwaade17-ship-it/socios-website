@@ -4522,3 +4522,15 @@ svg.paper-tear-svg {
         font-size: 15px;
     }
 }
+.tstack-dots {
+    margin-top: 40px !important;
+}
+.tstack-wrap {
+    height: 400px !important;
+}
+
+@media (max-width: 768px) {
+    .tstack-wrap {
+        height: 480px !important;
+    }
+}
