@@ -192,126 +192,147 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
+        hamburger.addEventListener('click', function() {
             navLinks.classList.toggle('open');
         });
     </script>
 
     <!-- TESTIMONIAL STACKED CARDS -->
     <script>
-        const testimonials = [
+        var testimonials = [
             { quote: "All the cornerstones basically: Aweda you're a gem as a host, Entyce your music curation slammed, the games perfectly served their purpose, the venue is cooooool, the vibes delivered. The fact that there was a socios cocktail blew me, you guys thought about everything!", author: "Tayo" },
             { quote: "Will not miss any of these for the future for sure!", author: "Anna" },
             { quote: "Loved the bingo! Loved the bar! Loved the people!", author: "Francois" },
             { quote: "Meeting so many interesting people AND I have to say, everyone was so willing to walk up to each other and just introduce themselves. So refreshing! The games were fantastic and a good way to foster interaction.", author: "Kamila" }
         ];
 
-        const rotations = [-2, 1.5, -1, 2.5];
-        const offsets = [0, 6, 12, 18];
-        const scales = [1, 0.97, 0.94, 0.91];
-        let tCurrent = 0;
-        let tAnimating = false;
-        let tDragStartX = 0;
-        let tDragX = 0;
-        let tIsDragging = false;
-        const tTotal = testimonials.length;
+        var rotations = [-2, 1.5, -1, 2.5];
+        var offsets = [0, 6, 12, 18];
+        var scales = [1, 0.97, 0.94, 0.91];
+        var tCurrent = 0;
+        var tAnimating = false;
+        var tDragStartX = 0;
+        var tDragX = 0;
+        var tIsDragging = false;
+        var tTotal = testimonials.length;
+        var tClickStartX = 0;
 
-        const tWrap = document.getElementById('tstackWrap');
-        const tDots = document.getElementById('tstackDots');
+        var tWrap = document.getElementById('tstackWrap');
+        var tDots = document.getElementById('tstackDots');
 
         function tBuildStack() {
             tWrap.innerHTML = '';
             tDots.innerHTML = '';
-            for (let i = tTotal - 1; i >= 0; i--) {
-                const pos = (i - tCurrent + tTotal) % tTotal;
-                const t = testimonials[i];
-                const card = document.createElement('div');
+            for (var i = tTotal - 1; i >= 0; i--) {
+                var pos = (i - tCurrent + tTotal) % tTotal;
+                var t = testimonials[i];
+                var card = document.createElement('div');
                 card.className = 'tstack-card';
-                card.dataset.index = i;
-                card.dataset.pos = pos;
-                card.innerHTML = `
-                    <svg class="tstack-clip" viewBox="0 0 18 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 2 C5 2 2 5 2 8 L2 38 C2 42 5 46 9 46 C13 46 16 42 16 38 L16 12 C16 9 14 7 11 7 L8 7 C6 7 4.5 8.5 4.5 10.5 L4.5 36 C4.5 38 6 39.5 8 39.5 L10 39.5" stroke="#3D1F1F" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-                    </svg>
-                    <blockquote class="tstack-quote">"${t.quote}"</blockquote>
-                    <span class="tstack-author">-- ${t.author}</span>
-                `;
+                card.setAttribute('data-index', i);
+                card.setAttribute('data-pos', pos);
+                var clipOpacity = pos === 0 ? '1' : '0';
+                card.innerHTML =
+                    '<svg class="tstack-clip" style="opacity:' + clipOpacity + '" viewBox="0 0 18 48" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+                        '<path d="M9 2 C5 2 2 5 2 8 L2 38 C2 42 5 46 9 46 C13 46 16 42 16 38 L16 12 C16 9 14 7 11 7 L8 7 C6 7 4.5 8.5 4.5 10.5 L4.5 36 C4.5 38 6 39.5 8 39.5 L10 39.5" stroke="#3D1F1F" stroke-width="1.8" stroke-linecap="round" fill="none"/>' +
+                    '</svg>' +
+                    '<blockquote class="tstack-quote">"' + t.quote + '"</blockquote>' +
+                    '<span class="tstack-author">-- ' + t.author + '</span>';
                 tApplyStyle(card, pos);
+                card.style.pointerEvents = pos === 0 ? 'all' : 'none';
+                card.style.cursor = pos === 0 ? 'pointer' : 'default';
                 if (pos === 0) {
                     card.addEventListener('mousedown', tStartDrag);
                     card.addEventListener('touchstart', tStartTouch, { passive: true });
                 }
                 tWrap.appendChild(card);
             }
-            for (let i = 0; i < tTotal; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'tstack-dot' + (i === tCurrent ? ' active' : '');
-                dot.addEventListener('click', () => { if (!tAnimating) tGoTo(i); });
+            for (var j = 0; j < tTotal; j++) {
+                var dot = document.createElement('div');
+                dot.className = 'tstack-dot' + (j === tCurrent ? ' active' : '');
+                dot.setAttribute('data-dot', j);
+                dot.addEventListener('click', (function(idx) {
+                    return function() { if (!tAnimating) tGoTo(idx); };
+                })(j));
                 tDots.appendChild(dot);
             }
         }
 
-        function tApplyStyle(card, pos, override) {
-            const rot = override ? override.rot : rotations[pos] || 0;
-            const tx = override ? override.tx : 0;
-            const ty = offsets[pos] || 0;
-            const sc = override ? override.scale : scales[pos] || 0.88;
-            const op = override ? override.opacity : pos === 0 ? 1 : pos === 1 ? 0.88 : pos === 2 ? 0.75 : 0.62;
-            card.style.transform = 'translateX(' + tx + 'px) translateY(' + ty + 'px) rotate(' + rot + 'deg) scale(' + sc + ')';
+        function tApplyStyle(card, pos) {
+            var rot = rotations[pos] || 0;
+            var ty = offsets[pos] || 0;
+            var sc = scales[pos] || 0.88;
+            var op = pos === 0 ? 1 : pos === 1 ? 0.88 : pos === 2 ? 0.75 : 0.62;
+            card.style.transform = 'translateX(0px) translateY(' + ty + 'px) rotate(' + rot + 'deg) scale(' + sc + ')';
             card.style.zIndex = tTotal - pos;
             card.style.opacity = op;
         }
 
         function tFlyOff(direction, onDone) {
-            const topCard = tWrap.querySelector('[data-index="' + tCurrent + '"]');
-            if (!topCard) return onDone();
+            var topCard = tWrap.querySelector('[data-index="' + tCurrent + '"]');
+            if (!topCard) { onDone(); return; }
             topCard.style.transition = 'transform 0.45s cubic-bezier(0.55,0,1,0.45), opacity 0.35s ease';
             topCard.style.transform = 'translateX(' + (direction * 600) + 'px) translateY(-60px) rotate(' + (direction * 25) + 'deg) scale(0.85)';
             topCard.style.opacity = '0';
-            tWrap.querySelectorAll('.tstack-card').forEach(function(card) {
-                if (parseInt(card.dataset.index) === tCurrent) return;
-                const pos = parseInt(card.dataset.pos);
-                const newPos = pos - 1;
+            var cards = tWrap.querySelectorAll('.tstack-card');
+            for (var i = 0; i < cards.length; i++) {
+                var c = cards[i];
+                if (parseInt(c.getAttribute('data-index')) === tCurrent) continue;
+                var pos = parseInt(c.getAttribute('data-pos'));
+                var newPos = pos - 1;
                 if (newPos >= 0) {
-                    card.style.transition = 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.4s ease';
-                    tApplyStyle(card, newPos);
+                    c.style.transition = 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.4s ease';
+                    tApplyStyle(c, newPos);
                 }
-            });
+            }
             setTimeout(onDone, 460);
         }
 
         function tNext(direction) {
             if (tAnimating) return;
             tAnimating = true;
-            tFlyOff(direction || 1, function() { tCurrent = (tCurrent + 1) % tTotal; tBuildStack(); tAnimating = false; });
+            tFlyOff(direction || 1, function() {
+                tCurrent = (tCurrent + 1) % tTotal;
+                tBuildStack();
+                tAnimating = false;
+            });
         }
 
         function tGoTo(index) {
             if (tAnimating || index === tCurrent) return;
             tAnimating = true;
-            const dir = index > tCurrent ? 1 : -1;
-            tFlyOff(dir, function() { tCurrent = index; tBuildStack(); tAnimating = false; });
+            var dir = index > tCurrent ? 1 : -1;
+            tFlyOff(dir, function() {
+                tCurrent = index;
+                tBuildStack();
+                tAnimating = false;
+            });
         }
 
         function tStartDrag(e) {
             if (tAnimating) return;
-            tIsDragging = true; tDragStartX = e.clientX; tDragX = 0;
+            tIsDragging = false;
+            tDragStartX = e.clientX;
+            tClickStartX = e.clientX;
+            tDragX = 0;
             document.addEventListener('mousemove', tOnDrag);
             document.addEventListener('mouseup', tEndDrag);
         }
 
         function tStartTouch(e) {
             if (tAnimating) return;
-            tIsDragging = true; tDragStartX = e.touches[0].clientX; tDragX = 0;
+            tIsDragging = false;
+            tDragStartX = e.touches[0].clientX;
+            tClickStartX = e.touches[0].clientX;
+            tDragX = 0;
             document.addEventListener('touchmove', tOnTouch, { passive: true });
             document.addEventListener('touchend', tEndTouch);
         }
 
         function tOnDrag(e) {
-            if (!tIsDragging) return;
             tDragX = e.clientX - tDragStartX;
-            const top = tWrap.querySelector('[data-index="' + tCurrent + '"]');
-            if (top) {
+            if (Math.abs(tDragX) > 5) tIsDragging = true;
+            var top = tWrap.querySelector('[data-index="' + tCurrent + '"]');
+            if (top && tIsDragging) {
                 top.style.transition = 'none';
                 top.style.transform = 'translateX(' + tDragX + 'px) translateY(0px) rotate(' + (tDragX * 0.06) + 'deg) scale(1)';
                 top.style.opacity = Math.max(0.2, 1 - Math.abs(tDragX) / 280);
@@ -319,10 +340,10 @@
         }
 
         function tOnTouch(e) {
-            if (!tIsDragging) return;
             tDragX = e.touches[0].clientX - tDragStartX;
-            const top = tWrap.querySelector('[data-index="' + tCurrent + '"]');
-            if (top) {
+            if (Math.abs(tDragX) > 5) tIsDragging = true;
+            var top = tWrap.querySelector('[data-index="' + tCurrent + '"]');
+            if (top && tIsDragging) {
                 top.style.transition = 'none';
                 top.style.transform = 'translateX(' + tDragX + 'px) translateY(0px) rotate(' + (tDragX * 0.06) + 'deg) scale(1)';
                 top.style.opacity = Math.max(0.2, 1 - Math.abs(tDragX) / 280);
@@ -330,22 +351,32 @@
         }
 
         function tEndDrag() {
-            tIsDragging = false;
             document.removeEventListener('mousemove', tOnDrag);
             document.removeEventListener('mouseup', tEndDrag);
-            if (Math.abs(tDragX) > 80) { tNext(tDragX > 0 ? 1 : -1); } else { tBuildStack(); }
+            if (tIsDragging && Math.abs(tDragX) > 80) {
+                tNext(tDragX > 0 ? 1 : -1);
+            } else if (!tIsDragging) {
+                tNext(1);
+            } else {
+                tBuildStack();
+            }
+            tIsDragging = false;
+            tDragX = 0;
         }
 
         function tEndTouch() {
-            tIsDragging = false;
             document.removeEventListener('touchmove', tOnTouch);
             document.removeEventListener('touchend', tEndTouch);
-            if (Math.abs(tDragX) > 80) { tNext(tDragX > 0 ? 1 : -1); } else { tBuildStack(); }
+            if (tIsDragging && Math.abs(tDragX) > 80) {
+                tNext(tDragX > 0 ? 1 : -1);
+            } else if (!tIsDragging) {
+                tNext(1);
+            } else {
+                tBuildStack();
+            }
+            tIsDragging = false;
+            tDragX = 0;
         }
-
-        tWrap.addEventListener('click', function() {
-            if (!tIsDragging && Math.abs(tDragX) < 5 && !tAnimating) tNext(1);
-        });
 
         tBuildStack();
     </script>
