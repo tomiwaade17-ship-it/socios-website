@@ -4270,3 +4270,13 @@ svg.paper-tear-svg {
         font-size: 15px;
     }
 }
+/* ===== HIDE OLD TESTIMONIAL SLIDER ===== */
+.testimonial-slider,
+.testimonial-inner,
+.slide-indicators,
+.quote-open,
+.quote-close,
+.testimonial-quote,
+.testimonial-author {
+    display: none !important;
+}
