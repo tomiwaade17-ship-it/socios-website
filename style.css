@@ -4534,3 +4534,17 @@ svg.paper-tear-svg {
         height: 480px !important;
     }
 }
+/* ===== WHY SOCIOS FIX ===== */
+.why-socios {
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+}
+
+.why-socios p {
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+    white-space: normal !important;
+    text-overflow: unset !important;
+}
