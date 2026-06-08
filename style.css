@@ -4569,3 +4569,9 @@ svg.paper-tear-svg {
         height: 360px !important;
     }
 }
+/* ===== UPCOMING EVENTS HERO EQUAL PADDING MOBILE ===== */
+@media (max-width: 768px) {
+    .upcoming-events-hero {
+        padding: 40px !important;
+    }
+}
