@@ -4575,3 +4575,25 @@ svg.paper-tear-svg {
         padding: 40px !important;
     }
 }
+@media (max-width: 768px) {
+    .upcoming-events-hero {
+        padding: 40px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .upcoming-events-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex-shrink: 0 !important;
+    }
+
+    .upcoming-card-image {
+        width: 140px !important;
+        height: 175px !important;
+        background-size: cover !important;
+        background-position: center !important;
+        flex-shrink: 0 !important;
+    }
+}
