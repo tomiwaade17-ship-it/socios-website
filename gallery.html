@@ -63,7 +63,6 @@
         <!-- GALLERY GRID -->
         <section class="gallery-page-grid">
             <div class="gallery-page-cards" id="galleryCards">
-                <!-- loading skeleton -->
                 <div class="gallery-skeleton">
                     <div class="skeleton-card"></div>
                     <div class="skeleton-card"></div>
@@ -78,9 +77,8 @@
                     <img src="assets/logo.png" alt="Socios">
                 </a>
                 <div class="footer-socials">
-                    <a href="#">in</a>
-                    <a href="#">ig</a>
-                    <a href="#">tt</a>
+                    <a href="https://www.instagram.com/socios_co/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@socios_co" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -111,7 +109,7 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
+        hamburger.addEventListener('click', function() {
             navLinks.classList.toggle('open');
         });
     </script>
@@ -163,17 +161,17 @@
                     });
 
                 const container = document.getElementById('galleryCards');
-                container.innerHTML = data.map(item => `
-                    <a href="gallery-details.html?collection=${encodeURIComponent(item.collection)}" class="gallery-page-card">
-                        <img src="${item.coverimage}" alt="${item.collection}" loading="lazy" style="object-position: top;">
-                        <div class="gallery-page-overlay">
-                            <span>${item.collection}</span>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </div>
-                    </a>
-                `).join('');
+                container.innerHTML = data.map(function(item) {
+                    return '<a href="gallery-details.html?collection=' + encodeURIComponent(item.collection) + '" class="gallery-page-card">' +
+                        '<img src="' + item.coverimage + '" alt="' + item.collection + '" loading="lazy" style="object-position: top;">' +
+                        '<div class="gallery-page-overlay">' +
+                            '<span>' + item.collection + '</span>' +
+                            '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">' +
+                                '<path d="M7 17L17 7M17 7H7M17 7V17"/>' +
+                            '</svg>' +
+                        '</div>' +
+                    '</a>';
+                }).join('');
 
             } catch (error) {
                 console.error('Error loading gallery:', error);
@@ -188,7 +186,7 @@
     <script>
         const lenis = new Lenis({
             duration: 1,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
             smoothTouch: false,
         });
         function raf(time) {
