@@ -1,3 +1,5 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
 /* ===== FONTS ===== */
 @font-face {
     font-family: 'Aileron';
@@ -4547,4 +4549,23 @@ svg.paper-tear-svg {
     height: auto !important;
     white-space: normal !important;
     text-overflow: unset !important;
+}
+/* ===== TSTACK CARD HEIGHT FIX ===== */
+.tstack-wrap {
+    height: 280px !important;
+}
+
+.tstack-card {
+    padding: 32px 32px 24px !important;
+}
+
+.tstack-quote {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+}
+
+@media (max-width: 768px) {
+    .tstack-wrap {
+        height: 360px !important;
+    }
 }
