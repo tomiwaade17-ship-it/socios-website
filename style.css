@@ -4564,36 +4564,35 @@ svg.paper-tear-svg {
     line-height: 1.6 !important;
 }
 
-@media (max-width: 768px) {
-    .tstack-wrap {
-        height: 360px !important;
-    }
-}
-/* ===== UPCOMING EVENTS HERO EQUAL PADDING MOBILE ===== */
+/* ===== UPCOMING EVENTS MOBILE FINAL FIX ===== */
 @media (max-width: 768px) {
     .upcoming-events-hero {
-        padding: 40px !important;
-    }
-}
-@media (max-width: 768px) {
-    .upcoming-events-hero {
-        padding: 40px !important;
+        height: auto !important;
+        padding: 32px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
     }
-
     .upcoming-events-card {
         width: 100% !important;
         max-width: 100% !important;
-        flex-shrink: 0 !important;
+        padding: 28px !important;
+        max-height: none !important;
+        overflow: visible !important;
     }
-
     .upcoming-card-image {
         width: 140px !important;
         height: 175px !important;
         background-size: cover !important;
         background-position: center !important;
-        flex-shrink: 0 !important;
+    }
+    .upcoming-card-title {
+        font-size: 18px !important;
+    }
+    .upcoming-card-tagline {
+        font-size: 13px !important;
+    }
+    .upcoming-card-date {
+        font-size: 12px !important;
     }
 }
