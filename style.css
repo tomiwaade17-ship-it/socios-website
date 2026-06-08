@@ -3748,7 +3748,7 @@ body {
     }
 
     .upcoming-events-hero {
-        height: 500px !important;
+        height: auto !important;
     }
 
     .upcoming-events-card {
@@ -3832,7 +3832,7 @@ body {
     }
 
     .upcoming-events-new .upcoming-events-hero {
-        height: 500px !important;
+        height: auto !important;
     }
 }
 /* ===== UPCOMING CARD OVERLAY DARKER + DATE FIX ===== */
