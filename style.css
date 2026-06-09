@@ -4902,3 +4902,13 @@ svg.paper-tear-svg {
     margin-bottom: 20px !important;
     display: block !important;
 }
+/* ===== VISION MISSION IMAGE INSET FINAL ===== */
+.vision-photo-left {
+    left: 60px !important;
+    top: -20px !important;
+}
+
+.vision-photo-right {
+    right: 60px !important;
+    bottom: -20px !important;
+}
