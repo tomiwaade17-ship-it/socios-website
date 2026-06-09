@@ -4944,3 +4944,7 @@ svg.paper-tear-svg {
     bottom: -10px !important;
     transform: rotate(7deg) !important;
 }
+/* ===== VISION MISSION BACKGROUND DEDACF ===== */
+.vision-mission {
+    background: #DEDACF !important;
+}
