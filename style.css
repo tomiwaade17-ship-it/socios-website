@@ -4778,3 +4778,107 @@ svg.paper-tear-svg {
         max-width: 100% !important;
     }
 }
+/* ===== VISION MISSION FINAL OVERHAUL ===== */
+.vision-mission {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 100px 0 !important;
+    overflow: hidden !important;
+    gap: 0 !important;
+    background: #F9F8F4 !important;
+    position: relative !important;
+}
+
+.vision-photo {
+    width: 220px !important;
+    flex-shrink: 0 !important;
+    background: #fff !important;
+    padding: 12px 12px 40px !important;
+    box-shadow: 3px 6px 20px rgba(0,0,0,0.15) !important;
+    position: absolute !important;
+    z-index: 1 !important;
+}
+
+.vision-photo img {
+    width: 100% !important;
+    height: 260px !important;
+    object-fit: cover !important;
+    object-position: top !important;
+    display: block !important;
+}
+
+.vision-photo-left {
+    transform: rotate(-8deg) !important;
+    left: -40px !important;
+    top: -20px !important;
+}
+
+.vision-photo-right {
+    transform: rotate(7deg) !important;
+    right: -40px !important;
+    bottom: -20px !important;
+}
+
+.vision-content {
+    text-align: center !important;
+    max-width: 420px !important;
+    padding: 40px 60px !important;
+    z-index: 2 !important;
+    position: relative !important;
+}
+
+.vision-label {
+    display: block !important;
+    font-size: 13px !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+    color: #262626 !important;
+    font-family: 'Aileron', sans-serif !important;
+    font-weight: 400 !important;
+    margin-bottom: 20px !important;
+}
+
+.vision-content p {
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+    color: #262626 !important;
+}
+
+@media (max-width: 768px) {
+    .vision-mission {
+        flex-direction: column !important;
+        padding: 60px 24px !important;
+        min-height: auto !important;
+    }
+
+    .vision-photo {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 160px !important;
+    }
+
+    .vision-photo img {
+        height: 180px !important;
+    }
+
+    .vision-photo-left {
+        transform: rotate(-4deg) !important;
+        align-self: flex-start !important;
+        margin-left: 16px !important;
+    }
+
+    .vision-photo-right {
+        transform: rotate(4deg) !important;
+        align-self: flex-end !important;
+        margin-right: 16px !important;
+    }
+
+    .vision-content {
+        padding: 20px 0 !important;
+        max-width: 100% !important;
+    }
+}
