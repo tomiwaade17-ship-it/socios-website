@@ -4912,3 +4912,17 @@ svg.paper-tear-svg {
     right: 60px !important;
     bottom: -20px !important;
 }
+/* ===== VISION MISSION INSET FIX ===== */
+.vision-photo-left {
+    position: absolute !important;
+    left: 80px !important;
+    top: -10px !important;
+    transform: rotate(-8deg) !important;
+}
+
+.vision-photo-right {
+    position: absolute !important;
+    right: 80px !important;
+    bottom: -10px !important;
+    transform: rotate(7deg) !important;
+}
