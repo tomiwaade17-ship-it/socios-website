@@ -4882,3 +4882,23 @@ svg.paper-tear-svg {
         max-width: 100% !important;
     }
 }
+/* ===== VISION MISSION FINAL FIXES ===== */
+.vision-photo-left {
+    left: 20px !important;
+    top: -20px !important;
+}
+
+.vision-photo-right {
+    right: 20px !important;
+    bottom: -20px !important;
+}
+
+.vision-label {
+    font-size: 11px !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+    color: #3D1F1F !important;
+    font-family: 'Aileron', sans-serif !important;
+    margin-bottom: 20px !important;
+    display: block !important;
+}
