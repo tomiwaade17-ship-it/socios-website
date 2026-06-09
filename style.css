@@ -4690,3 +4690,91 @@ svg.paper-tear-svg {
         max-width: 100%;
     }
 }
+/* ===== VISION MISSION POLAROID FINAL ===== */
+.vision-mission {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 80px 40px !important;
+    overflow: hidden !important;
+    gap: 0 !important;
+    background: #F9F8F4 !important;
+}
+
+.vision-photo {
+    width: 160px !important;
+    flex-shrink: 0 !important;
+    background: #fff !important;
+    padding: 10px 10px 32px !important;
+    box-shadow: 2px 4px 16px rgba(0,0,0,0.12) !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+.vision-photo img {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover !important;
+    object-position: top !important;
+    display: block !important;
+}
+
+.vision-photo-left {
+    transform: rotate(-8deg) translateY(-30px) !important;
+    margin-right: -10px !important;
+}
+
+.vision-photo-right {
+    transform: rotate(7deg) translateY(30px) !important;
+    margin-left: -10px !important;
+}
+
+.vision-content {
+    text-align: center !important;
+    max-width: 360px !important;
+    padding: 0 40px !important;
+    z-index: 2 !important;
+    flex-shrink: 0 !important;
+}
+
+.vision-label {
+    display: block !important;
+    font-size: 11px !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+    color: #A3968D !important;
+    margin-bottom: 20px !important;
+}
+
+.vision-content p {
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+    color: #262626 !important;
+}
+
+@media (max-width: 768px) {
+    .vision-mission {
+        flex-direction: column !important;
+        padding: 60px 24px !important;
+        gap: 40px !important;
+    }
+
+    .vision-photo-left {
+        transform: rotate(-4deg) !important;
+        margin-right: 0 !important;
+        align-self: flex-start !important;
+        margin-left: 20px !important;
+    }
+
+    .vision-photo-right {
+        transform: rotate(4deg) !important;
+        margin-left: 0 !important;
+        align-self: flex-end !important;
+        margin-right: 20px !important;
+    }
+
+    .vision-content {
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+}
