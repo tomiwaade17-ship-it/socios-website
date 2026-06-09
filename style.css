@@ -4926,3 +4926,21 @@ svg.paper-tear-svg {
     bottom: -10px !important;
     transform: rotate(7deg) !important;
 }
+/* ===== VISION MISSION FINAL ===== */
+.vision-mission {
+    background: #F9F8F4 !important;
+}
+
+.vision-photo-left {
+    position: absolute !important;
+    left: 160px !important;
+    top: -10px !important;
+    transform: rotate(-8deg) !important;
+}
+
+.vision-photo-right {
+    position: absolute !important;
+    right: 160px !important;
+    bottom: -10px !important;
+    transform: rotate(7deg) !important;
+}
