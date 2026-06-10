@@ -5027,3 +5027,10 @@ svg.paper-tear-svg {
         line-height: 1.6 !important;
     }
 }
+/* ===== NAVBAR SCROLL FIX ===== */
+nav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    background: #F9F8F4 !important;
+}
