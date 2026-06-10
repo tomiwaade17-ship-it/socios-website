@@ -5049,3 +5049,10 @@ svg.paper-tear-svg {
         line-height: 1.6 !important;
     }
 }
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 28px !important;
+        line-height: 1.15 !important;
+        letter-spacing: 0 !important;
+    }
+}
