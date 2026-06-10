@@ -5027,7 +5027,8 @@ svg.paper-tear-svg {
     .hero-content h1 {
         font-size: 32px;
     }
-}@media (max-width: 768px) { .hero .hero-content h1 { font-size: 38px !important; line-height: 1.15 !important; } }
+}
+@media (max-width: 768px) { .hero .hero-content h1 { font-size: 38px !important; line-height: 1.15 !important; } }
 
 @media (max-width: 768px) {
     .hero-content h1 {
