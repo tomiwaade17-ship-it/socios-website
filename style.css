@@ -4993,3 +4993,7 @@ svg.paper-tear-svg {
         margin-top: 0 !important;
     }
 }
+/* ===== ABOUT PREVIEW TEXT WIDTH FIX ===== */
+.about-preview-text {
+    max-width: 420px !important;
+}
