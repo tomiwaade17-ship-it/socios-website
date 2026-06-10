@@ -4997,3 +4997,16 @@ svg.paper-tear-svg {
 .about-preview-text {
     max-width: 420px !important;
 }
+/* ===== MAILING SECTION SPACING FIX ===== */
+.mailing-inner h2 {
+    margin-bottom: 8px !important;
+}
+
+.mailing-inner p {
+    margin-top: 0 !important;
+}
+/* ===== MAILING HEADER SPACING ===== */
+.mailing-inner h2 {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
