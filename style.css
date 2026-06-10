@@ -5010,50 +5010,20 @@ svg.paper-tear-svg {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
 }
-/* ===== HERO TITLE MOBILE 3 LINES ===== */
+
+/* ===== HERO MOBILE FINAL ===== */
 @media (max-width: 768px) {
     .hero-content h1 {
-        font-size: 36px;
+        font-size: 22px !important;
+        line-height: 1.2 !important;
+        letter-spacing: 0 !important;
+        word-spacing: 0 !important;
     }
-}
-/* ===== CONTACT STRIP MOBILE FONT SIZE ===== */
-@media (max-width: 768px) {
     .contact-strip h2 {
         font-size: 24px !important;
-    }
-}
-/* ===== HERO TITLE MOBILE 3 LINES ===== */
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 32px;
-    }
-}
-@media (max-width: 768px) { .hero .hero-content h1 { font-size: 38px !important; line-height: 1.15 !important; } }
-
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 28px !important;
-        line-height: 1.2 !important;
-    }
-}
-@media (max-width: 768px) { .hero-content h1 { font-size: 24px !important; line-height: 1.2 !important; } }
-/* ===== HERO MOBILE COMPLETE FIX ===== */
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 28px !important;
-        line-height: 1.15 !important;
-        letter-spacing: 0 !important;
-        word-spacing: -1px !important;
     }
     .hero-content p {
         font-size: 14px !important;
         line-height: 1.6 !important;
-    }
-}
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 28px !important;
-        line-height: 1.15 !important;
-        letter-spacing: 0 !important;
     }
 }
