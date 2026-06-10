@@ -5034,3 +5034,13 @@ nav {
     z-index: 1000 !important;
     background: #F9F8F4 !important;
 }
+/* ===== NAVBAR OVERLAP FIX ===== */
+.page-wrapper {
+    padding-top: 70px !important;
+}
+
+@media (max-width: 768px) {
+    .page-wrapper {
+        padding-top: 60px !important;
+    }
+}
