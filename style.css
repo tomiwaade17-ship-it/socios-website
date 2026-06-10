@@ -5013,7 +5013,7 @@ svg.paper-tear-svg {
 /* ===== HERO TITLE MOBILE 3 LINES ===== */
 @media (max-width: 768px) {
     .hero-content h1 {
-        font-size: 36px !important;
+        font-size: 36px;
     }
 }
 /* ===== CONTACT STRIP MOBILE FONT SIZE ===== */
@@ -5025,6 +5025,13 @@ svg.paper-tear-svg {
 /* ===== HERO TITLE MOBILE 3 LINES ===== */
 @media (max-width: 768px) {
     .hero-content h1 {
-        font-size: 32px !important;
+        font-size: 32px;
     }
 }@media (max-width: 768px) { .hero .hero-content h1 { font-size: 38px !important; line-height: 1.15 !important; } }
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 28px !important;
+        line-height: 1.2 !important;
+    }
+}
