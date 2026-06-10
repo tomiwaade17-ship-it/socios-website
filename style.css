@@ -5053,3 +5053,10 @@ nav {
     z-index: 9999 !important;
     background: #F9F8F4 !important;
 }
+/* ===== NAVBAR Z-INDEX FINAL ===== */
+nav {
+    z-index: 99999 !important;
+    position: sticky !important;
+    top: 0 !important;
+    background-color: #F9F8F4 !important;
+}
