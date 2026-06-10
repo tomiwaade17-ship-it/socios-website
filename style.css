@@ -5016,3 +5016,9 @@ svg.paper-tear-svg {
         font-size: 36px !important;
     }
 }
+/* ===== CONTACT STRIP MOBILE FONT SIZE ===== */
+@media (max-width: 768px) {
+    .contact-strip h2 {
+        font-size: 24px !important;
+    }
+}
