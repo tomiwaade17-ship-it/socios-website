@@ -189,5 +189,19 @@
         requestAnimationFrame(raf);
     </script>
 
+<script>
+        document.body.classList.add("loaded");
+        document.querySelectorAll("a").forEach(function(link) {
+            link.addEventListener("click", function(e) {
+                var href = this.getAttribute("href");
+                if (href && !href.startsWith("#") && !href.startsWith("mailto") && !href.startsWith("http") && !href.startsWith("tel")) {
+                    e.preventDefault();
+                    document.body.classList.remove("loaded");
+                    var target = href;
+                    setTimeout(function() { window.location.href = target; }, 300);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
