@@ -5094,3 +5094,7 @@ nav {
 body {
     padding-top: 80px !important;
 }
+/* ===== REMOVE BODY PADDING TOP ===== */
+body {
+    padding-top: 0 !important;
+}
