@@ -5107,15 +5107,3 @@ body {
 body.loaded {
     opacity: 1;
 }
-/* Hero text width */
-.hero-content h1 {
-    max-width: 750px;
-    margin: 0 auto;
-    line-height: 1.1;
-}
-
-.hero-content p {
-    max-width: 650px;
-    margin: 20px auto 0;
-    line-height: 1.6;
-}
