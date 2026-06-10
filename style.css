@@ -5010,3 +5010,9 @@ svg.paper-tear-svg {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
 }
+/* ===== HERO TITLE MOBILE 3 LINES ===== */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 36px !important;
+    }
+}
