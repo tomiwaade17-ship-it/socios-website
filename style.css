@@ -5070,3 +5070,13 @@ nav {
     -webkit-backdrop-filter: none !important;
     isolation: isolate !important;
 }
+/* ===== HERO HEIGHT FIX ===== */
+.hero {
+    height: calc(100vh - 70px) !important;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: calc(100vh - 60px) !important;
+    }
+}
