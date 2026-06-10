@@ -5046,7 +5046,7 @@ nav {
 }
 /* ===== NAVBAR FIXED BACKGROUND ===== */
 nav {
-    position: fixed !important;
+    position: sticky !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
