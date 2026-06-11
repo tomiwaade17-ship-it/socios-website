@@ -5174,3 +5174,11 @@ body.loaded {
         line-height: 1.25 !important;
     }
 }
+/* ===== HERO MOBILE BODY TEXT WIDTH ===== */
+@media (max-width: 768px) {
+    .hero-content p {
+        max-width: 280px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
