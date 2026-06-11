@@ -5127,9 +5127,6 @@ body.loaded {
         word-break: normal !important;
     }
 }
-.hero-content h1 br {
-    display: none;
-}
 
 @media (max-width: 768px) {
     .hero-content h1 br {
