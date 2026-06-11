@@ -5136,3 +5136,25 @@ body.loaded {
         display: none !important;
     }
 }
+/* ===== HERO MOBILE TEXT SIZE FINAL ===== */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 30px !important;
+        line-height: 1.3 !important;
+    }
+}
+/* ===== HERO DESKTOP LOCK ===== */
+@media (min-width: 769px) {
+    .hero-content h1 {
+        font-size: 48px !important;
+        line-height: 1.2 !important;
+    }
+}
+
+/* ===== HERO MOBILE FINAL ===== */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 30px !important;
+        line-height: 1.3 !important;
+    }
+}
