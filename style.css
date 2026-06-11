@@ -5120,3 +5120,19 @@ body.loaded {
     margin-bottom: 40px;
     line-height: 1.5;
 }
+/* ===== HERO MOBILE TEXT FIX ===== */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 26px !important;
+        word-break: normal !important;
+    }
+}
+.hero-content h1 br {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 br {
+        display: none !important;
+    }
+}
