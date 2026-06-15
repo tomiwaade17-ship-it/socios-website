@@ -5308,14 +5308,6 @@ body.loaded {
     text-align: center;
 }
 
-.blog-back-arrow {
-    position: absolute;
-    top: 100px;
-    left: 60px;
-    font-size: 18px;
-    color: #3D1F1F;
-    text-decoration: none;
-}
 
 .blog-page-header-text {
     max-width: 560px;
@@ -5349,7 +5341,7 @@ body.loaded {
 
 .blog-featured-link {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     text-decoration: none;
     color: inherit;
     border: 1px solid #e8e2d6;
@@ -5452,20 +5444,3 @@ body.loaded {
     .blog-page-header {
         padding: 100px 24px 32px;
     }
-    .blog-back-arrow {
-        left: 24px;
-    }
-    .blog-page-header-text h1 {
-        font-size: 28px;
-    }
-    .blog-featured-wrap {
-        padding: 32px 24px 60px;
-    }
-    .blog-older-wrap {
-        padding: 0 24px 60px;
-    }
-    .blog-older-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-}
