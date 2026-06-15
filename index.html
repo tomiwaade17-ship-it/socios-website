@@ -31,6 +31,7 @@
             <li><a href="about.html">About</a></li>
             <li><a href="events.html">Events</a></li>
             <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <a href="#join" class="nav-cta">Join Socios</a>
@@ -145,6 +146,26 @@
             </div>
         </section>
 
+        <!-- BLOG PREVIEW -->
+        <section class="blog-preview">
+            <div class="blog-preview-text">
+                <span class="blog-label">From The Blog</span>
+                <h2 class="blog-preview-title">Stories, ideas and updates from the Socios community.</h2>
+                <p class="blog-preview-desc">Thoughts on community building, event recaps and everything in between — written by the people behind Socios.</p>
+                <a href="blog.html" class="btn-dark-outline">See All Blog Posts</a>
+            </div>
+            <div class="blog-preview-card">
+                <a href="blog-post.html?slug=" id="blogPreviewLink" class="blog-card-link">
+                    <div class="blog-card-image" id="blogPreviewImage"></div>
+                    <div class="blog-card-body">
+                        <h3 class="blog-card-title" id="blogPreviewTitle"></h3>
+                        <p class="blog-card-excerpt" id="blogPreviewExcerpt"></p>
+                        <span class="blog-card-readmore">Read More</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
         <!-- JOIN MAILING LIST -->
         <section class="mailing" id="join">
             <div class="mailing-inner">
@@ -180,6 +201,7 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="events.html">Events</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -414,6 +436,60 @@
             document.getElementById('upcomingBtn').href = event.link;
         }
         loadHomeEvents();
+    </script>
+
+    <!-- BLOG PREVIEW DATA -->
+    <script>
+        const BLOG_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=722340128&single=true&output=csv';
+
+        function parseBlogCSV(text) {
+            var rows = [];
+            var lines = text.split('\n');
+            for (var i = 0; i < lines.length; i++) {
+                var row = [];
+                var current = '';
+                var inQuotes = false;
+                var line = lines[i];
+                for (var j = 0; j < line.length; j++) {
+                    var char = line[j];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        row.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                row.push(current.trim());
+                rows.push(row);
+            }
+            return rows;
+        }
+
+        async function loadBlogPreview() {
+            try {
+                var response = await fetch(BLOG_SHEET_URL);
+                var text = await response.text();
+                var rows = parseBlogCSV(text);
+                if (rows.length < 2) return;
+                var headers = rows[0].map(function(h) { return h.replace(/"/g, '').trim().toLowerCase(); });
+                var values = rows[1];
+                var post = {};
+                headers.forEach(function(h, i) {
+                    post[h] = (values[i] || '').replace(/"/g, '').trim();
+                });
+
+                document.getElementById('blogPreviewImage').style.backgroundImage = 'url(' + post.coverimage + ')';
+                document.getElementById('blogPreviewTitle').textContent = post.title;
+                document.getElementById('blogPreviewExcerpt').textContent = post.excerpt;
+                document.getElementById('blogPreviewLink').href = 'blog-post.html?slug=' + encodeURIComponent(post.slug);
+            } catch (error) {
+                console.error('Error loading blog preview:', error);
+            }
+        }
+
+        loadBlogPreview();
     </script>
 
     <!-- LENIS SMOOTH SCROLL -->
