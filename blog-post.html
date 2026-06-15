@@ -100,40 +100,80 @@
         const BLOG_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=722340128&single=true&output=csv';
         const BLOGDETAILS_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=1806440596&single=true&output=csv';
 
-        function parseBlogCSV(text) {
+        // Proper CSV parser that handles quoted multi-line cells
+        function parseCSVFull(text) {
             var rows = [];
-            var lines = text.split('\n');
-            for (var i = 0; i < lines.length; i++) {
-                var row = [];
-                var current = '';
-                var inQuotes = false;
-                var line = lines[i];
-                for (var j = 0; j < line.length; j++) {
-                    var char = line[j];
+            var row = [];
+            var field = '';
+            var inQuotes = false;
+            var i = 0;
+
+            while (i < text.length) {
+                var char = text[i];
+
+                if (inQuotes) {
                     if (char === '"') {
-                        inQuotes = !inQuotes;
-                    } else if (char === ',' && !inQuotes) {
-                        row.push(current.trim());
-                        current = '';
+                        if (text[i + 1] === '"') {
+                            field += '"';
+                            i += 2;
+                            continue;
+                        } else {
+                            inQuotes = false;
+                            i++;
+                            continue;
+                        }
                     } else {
-                        current += char;
+                        field += char;
+                        i++;
+                        continue;
+                    }
+                } else {
+                    if (char === '"') {
+                        inQuotes = true;
+                        i++;
+                        continue;
+                    } else if (char === ',') {
+                        row.push(field);
+                        field = '';
+                        i++;
+                        continue;
+                    } else if (char === '\r' && text[i + 1] === '\n') {
+                        row.push(field);
+                        rows.push(row);
+                        row = [];
+                        field = '';
+                        i += 2;
+                        continue;
+                    } else if (char === '\n') {
+                        row.push(field);
+                        rows.push(row);
+                        row = [];
+                        field = '';
+                        i++;
+                        continue;
+                    } else {
+                        field += char;
+                        i++;
+                        continue;
                     }
                 }
-                row.push(current.trim());
+            }
+            if (field.length > 0 || row.length > 0) {
+                row.push(field);
                 rows.push(row);
             }
             return rows;
         }
 
         function csvRowsToObjects(rows) {
-            var headers = rows[0].map(function(h) { return h.replace(/"/g, '').trim().toLowerCase(); });
+            var headers = rows[0].map(function(h) { return h.trim().toLowerCase(); });
             var objects = [];
             for (var i = 1; i < rows.length; i++) {
                 var values = rows[i];
                 if (!values || values.join('').trim() === '') continue;
                 var obj = {};
                 headers.forEach(function(h, idx) {
-                    obj[h] = (values[idx] || '').replace(/"/g, '').trim();
+                    obj[h] = (values[idx] || '').trim();
                 });
                 objects.push(obj);
             }
@@ -147,6 +187,7 @@
         }
 
         function parseBlogBody(text) {
+            text = text.replace(/\r\n/g, '\n');
             var blocks = text.split(/\n\s*\n/);
             var html = '';
             var imageRegex = /^(https?:\/\/\S+\.(jpg|jpeg|png|gif|webp))(\?\S*)?$/i;
@@ -191,27 +232,40 @@
                 if (!slug) return;
 
                 var blogResponse = await fetch(BLOG_SHEET_URL);
-                var blogRows = parseBlogCSV(await blogResponse.text());
+                var blogRows = parseCSVFull(await blogResponse.text());
                 var posts = csvRowsToObjects(blogRows);
                 var post = posts.find(function(p) { return p.slug === slug; });
-                if (!post) return;
+                if (!post) {
+                    document.getElementById('postContent').innerHTML = '<p>Post not found.</p>';
+                    return;
+                }
 
                 document.getElementById('pageTitle').textContent = post.title + ' — Socios';
                 document.getElementById('pageDescription').setAttribute('content', post.excerpt);
                 document.getElementById('postTitle').textContent = post.title;
                 document.getElementById('postDate').textContent = post.date.toUpperCase();
-                document.getElementById('postCoverImage').src = post.coverimage;
-                document.getElementById('postCoverImage').alt = post.title;
+
+                var coverImg = document.getElementById('postCoverImage');
+                if (post.coverimage) {
+                    coverImg.src = post.coverimage;
+                    coverImg.alt = post.title;
+                } else {
+                    coverImg.style.display = 'none';
+                }
 
                 var detailsResponse = await fetch(BLOGDETAILS_SHEET_URL);
-                var detailsRows = parseBlogCSV(await detailsResponse.text());
+                var detailsRows = parseCSVFull(await detailsResponse.text());
                 var details = csvRowsToObjects(detailsRows);
                 var detail = details.find(function(d) { return d.slug === slug; });
-                if (!detail) return;
+                if (!detail || !detail.body) {
+                    document.getElementById('postContent').innerHTML = '<p>Content coming soon.</p>';
+                    return;
+                }
 
                 document.getElementById('postContent').innerHTML = parseBlogBody(detail.body);
             } catch (error) {
                 console.error('Error loading blog post:', error);
+                document.getElementById('postContent').innerHTML = '<p>There was an error loading this post.</p>';
             }
         }
         loadBlogPost();
