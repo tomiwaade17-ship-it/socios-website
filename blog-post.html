@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Blog — Socios</title>
+    <meta name="description" id="pageDescription" content="Stories, ideas and updates from the Socios community.">
+    <link rel="canonical" href="https://socios.community/blog-post.html">
+    <link rel="icon" type="image/jpeg" href="assets/favicon.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <img src="assets/logo.png" alt="Socios">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="index.html#join" class="nav-cta">Join Socios</a>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <div class="page-wrapper">
+
+        <!-- BLOG POST HEADER -->
+        <section class="blog-post-header">
+            <a href="blog.html" class="blog-post-back">Back to Blog</a>
+            <span class="blog-post-date" id="postDate"></span>
+            <h1 id="postTitle"></h1>
+        </section>
+
+        <!-- COVER IMAGE -->
+        <section class="blog-post-cover">
+            <img id="postCoverImage" src="" alt="">
+        </section>
+
+        <!-- ARTICLE BODY -->
+        <section class="blog-post-content" id="postContent"></section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div>
+                <a href="index.html" class="footer-logo">
+                    <img src="assets/logo.png" alt="Socios">
+                </a>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/socios_co/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@socios_co" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Help & Support</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </footer>
+        <div class="footer-bottom">
+            <p>Socios © 2026, All Rights Reserved</p>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('open');
+        });
+    </script>
+
+    <!-- BLOG POST DATA -->
+    <script>
+        const BLOG_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=722340128&single=true&output=csv';
+        const BLOGDETAILS_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=1806440596&single=true&output=csv';
+
+        function parseBlogCSV(text) {
+            var rows = [];
+            var lines = text.split('\n');
+            for (var i = 0; i < lines.length; i++) {
+                var row = [];
+                var current = '';
+                var inQuotes = false;
+                var line = lines[i];
+                for (var j = 0; j < line.length; j++) {
+                    var char = line[j];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        row.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                row.push(current.trim());
+                rows.push(row);
+            }
+            return rows;
+        }
+
+        function csvRowsToObjects(rows) {
+            var headers = rows[0].map(function(h) { return h.replace(/"/g, '').trim().toLowerCase(); });
+            var objects = [];
+            for (var i = 1; i < rows.length; i++) {
+                var values = rows[i];
+                if (!values || values.join('').trim() === '') continue;
+                var obj = {};
+                headers.forEach(function(h, idx) {
+                    obj[h] = (values[idx] || '').replace(/"/g, '').trim();
+                });
+                objects.push(obj);
+            }
+            return objects;
+        }
+
+        function escapeAndLink(str) {
+            str = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            str = str.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+            return str;
+        }
+
+        function parseBlogBody(text) {
+            var blocks = text.split(/\n\s*\n/);
+            var html = '';
+            var imageRegex = /^(https?:\/\/\S+\.(jpg|jpeg|png|gif|webp))(\?\S*)?$/i;
+
+            blocks.forEach(function(block) {
+                block = block.trim();
+                if (!block) return;
+
+                if (block.indexOf('## ') === 0) {
+                    html += '<h2>' + escapeAndLink(block.slice(3).trim()) + '</h2>';
+                    return;
+                }
+                if (block.indexOf('### ') === 0) {
+                    html += '<h3>' + escapeAndLink(block.slice(4).trim()) + '</h3>';
+                    return;
+                }
+                if (imageRegex.test(block)) {
+                    html += '<img class="blog-post-image" src="' + block + '" alt="">';
+                    return;
+                }
+
+                var lines = block.split('\n').map(function(l) { return l.trim(); }).filter(Boolean);
+                var isList = lines.length > 0 && lines.every(function(l) { return l.indexOf('- ') === 0; });
+                if (isList) {
+                    html += '<ul>';
+                    lines.forEach(function(l) {
+                        html += '<li>' + escapeAndLink(l.slice(2).trim()) + '</li>';
+                    });
+                    html += '</ul>';
+                    return;
+                }
+
+                html += '<p>' + lines.map(escapeAndLink).join('<br>') + '</p>';
+            });
+
+            return html;
+        }
+
+        async function loadBlogPost() {
+            try {
+                var slug = new URLSearchParams(window.location.search).get('slug');
+                if (!slug) return;
+
+                var blogResponse = await fetch(BLOG_SHEET_URL);
+                var blogRows = parseBlogCSV(await blogResponse.text());
+                var posts = csvRowsToObjects(blogRows);
+                var post = posts.find(function(p) { return p.slug === slug; });
+                if (!post) return;
+
+                document.getElementById('pageTitle').textContent = post.title + ' — Socios';
+                document.getElementById('pageDescription').setAttribute('content', post.excerpt);
+                document.getElementById('postTitle').textContent = post.title;
+                document.getElementById('postDate').textContent = post.date.toUpperCase();
+                document.getElementById('postCoverImage').src = post.coverimage;
+                document.getElementById('postCoverImage').alt = post.title;
+
+                var detailsResponse = await fetch(BLOGDETAILS_SHEET_URL);
+                var detailsRows = parseBlogCSV(await detailsResponse.text());
+                var details = csvRowsToObjects(detailsRows);
+                var detail = details.find(function(d) { return d.slug === slug; });
+                if (!detail) return;
+
+                document.getElementById('postContent').innerHTML = parseBlogBody(detail.body);
+            } catch (error) {
+                console.error('Error loading blog post:', error);
+            }
+        }
+        loadBlogPost();
+    </script>
+
+    <!-- LENIS SMOOTH SCROLL -->
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1,
+            easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+            smoothTouch: false,
+        });
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script>
+
+<script>
+        document.body.classList.add("loaded");
+        document.querySelectorAll("a").forEach(function(link) {
+            link.addEventListener("click", function(e) {
+                var href = this.getAttribute("href");
+                if (href && !href.startsWith("#") && !href.startsWith("mailto") && !href.startsWith("http") && !href.startsWith("tel")) {
+                    e.preventDefault();
+                    document.body.classList.remove("loaded");
+                    var target = href;
+                    setTimeout(function() { window.location.href = target; }, 300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
