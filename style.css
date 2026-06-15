@@ -5296,3 +5296,8 @@ body.loaded {
     font-family: 'Aileron', sans-serif;
     letter-spacing: -0.02em;
 }
+/* ===== BLOG HEADER TEXT UPPERCASE ===== */
+.blog-preview-title,
+.blog-card-title {
+    text-transform: uppercase;
+}
