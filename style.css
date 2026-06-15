@@ -5188,22 +5188,13 @@ body.loaded {
     gap: 64px;
     align-items: flex-start;
     padding: 80px 60px;
-    background: #F9F8F4;
+    background: #DEDACF;
 }
 
 .blog-preview-text {
     flex: 1;
 }
 
-.blog-label {
-    display: block;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #A3968D;
-    font-family: 'Aileron', sans-serif;
-    margin-bottom: 16px;
-}
 
 .blog-preview-title {
     font-family: Georgia, serif;
@@ -5278,4 +5269,30 @@ body.loaded {
     .blog-preview-title {
         font-size: 24px;
     }
+}
+/* ===== BLOG PREVIEW FIXES ===== */
+.blog-label {
+    display: none;
+}
+
+.blog-preview {
+    background: #DEDACF;
+}
+
+.blog-preview-title {
+    font-family: 'Aileron', sans-serif;
+    font-size: 36px;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .blog-preview-title {
+        font-size: 28px;
+    }
+}
+/* ===== BLOG CARD TITLE FONT ===== */
+.blog-card-title {
+    font-family: 'Aileron', sans-serif;
+    letter-spacing: -0.02em;
 }
