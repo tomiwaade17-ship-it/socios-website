@@ -5347,6 +5347,7 @@ body.loaded {
     border: 1px solid #e8e2d6;
     background: #fff;
 }
+.blog-featured-image {
 
     min-width: 320px;
     height: 380px;
