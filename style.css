@@ -5348,8 +5348,6 @@ body.loaded {
     background: #fff;
 }
 
-.blog-featured-image {
-    flex: 1;
     min-width: 320px;
     height: 380px;
     background-size: cover;
