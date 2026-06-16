@@ -1,27 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://socios.community/</loc>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://socios.community/about.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://socios.community/events.html</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://socios.community/gallery.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://socios.community/contact.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://socios.community/event-details.html</loc>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://socios.community/</loc>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://socios.community/events.html</loc>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://socios.community/event-details.html</loc>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://socios.community/about.html</loc>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://socios.community/blog.html</loc>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://socios.community/blog-post.html</loc>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://socios.community/gallery.html</loc>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://socios.community/gallery-details.html</loc>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://socios.community/contact.html</loc>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://socios.community/privacy-policy.html</loc>
+<priority>0.3</priority>
+</url>
+<url>
+<loc>https://socios.community/terms-conditions.html</loc>
+<priority>0.3</priority>
+</url>
 </urlset>
