@@ -5573,3 +5573,10 @@ body.loaded {
         font-size: 20px !important;
     }
 }
+
+/* ===== BLOG PAGE HEADER TITLE MOBILE SIZE ===== */
+@media (max-width: 768px) {
+    .blog-page-header-text h1 {
+        font-size: 24px !important;
+    }
+}
