@@ -5601,3 +5601,10 @@ body.loaded {
         padding: 32px 24px 60px !important;
     }
 }
+
+/* ===== BLOG FEATURED BODY PADDING MOBILE ===== */
+@media (max-width: 768px) {
+    .blog-featured-body {
+        padding: 24px !important;
+    }
+}
