@@ -5570,6 +5570,6 @@ body.loaded {
 /* ===== BLOG POST TITLE MOBILE SIZE ===== */
 @media (max-width: 768px) {
     .blog-post-header h1 {
-        font-size: 24px !important;
+        font-size: 20px !important;
     }
 }
