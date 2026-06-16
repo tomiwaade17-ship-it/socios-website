@@ -5580,3 +5580,17 @@ body.loaded {
         font-size: 24px !important;
     }
 }
+
+/* ===== BLOG FEATURED CARD MOBILE FIX ===== */
+@media (max-width: 768px) {
+    .blog-featured-title {
+        font-size: 22px !important;
+    }
+    .blog-featured-image {
+        width: 100%;
+        height: 240px;
+    }
+    .blog-featured-link {
+        overflow: hidden;
+    }
+}
