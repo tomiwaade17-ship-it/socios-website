@@ -5566,7 +5566,6 @@ body.loaded {
         font-size: 18px;
     }
 }
-cd /c/Users/HP/OneDrive/Desktop/socios-website && cat >> style.css << 'EOF'
 
 /* ===== BLOG POST TITLE MOBILE SIZE ===== */
 @media (max-width: 768px) {
@@ -5574,4 +5573,3 @@ cd /c/Users/HP/OneDrive/Desktop/socios-website && cat >> style.css << 'EOF'
         font-size: 24px !important;
     }
 }
-EOF
