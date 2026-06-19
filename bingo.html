@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Zone — Human Bingo | Socios</title>
+    <meta name="description" content="Play Human Bingo at Socios events. Connect through shared interests, find your matches, and race to complete the grid.">
+    <link rel="canonical" href="https://socios.community/bingo.html">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bingo.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <img src="assets/logo.png" alt="Socios">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="index.html#join" class="nav-cta">Join Socios</a>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <div class="bingo-app">
+
+        <!-- Registration Screen -->
+        <div id="registration-screen" class="bingo-screen active">
+            <div class="bingo-container">
+                <div class="bingo-hero">
+                    <span class="bingo-eyebrow">Fun Zone</span>
+                    <h1 class="bingo-title">Human Bingo</h1>
+                    <p class="bingo-subtitle">Connect through shared interests. Find your matches.</p>
+                </div>
+
+                <form id="registration-form" class="bingo-form">
+                    <div class="bingo-form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your full name" required>
+                    </div>
+
+                    <div class="bingo-form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="bingo-form-group">
+                        <label for="profession">Profession</label>
+                        <input type="text" id="profession" name="profession" placeholder="What do you do?" required>
+                    </div>
+
+                    <button type="submit" class="bingo-btn bingo-btn-primary">
+                        Start Playing <span class="bingo-arrow">→</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bingo Game Screen -->
+        <div id="game-screen" class="bingo-screen">
+            <div class="bingo-container bingo-game-container">
+                <header class="bingo-game-header">
+                    <div class="bingo-header-left">
+                        <span class="bingo-eyebrow">Fun Zone</span>
+                    </div>
+                    <div class="bingo-header-center">
+                        <span class="bingo-player-name" id="player-display"></span>
+                    </div>
+                    <div class="bingo-header-right">
+                        <span class="bingo-match-count"><span id="match-count">0</span>/24</span>
+                    </div>
+                </header>
+
+                <div class="bingo-status" id="bingo-status"></div>
+
+                <div class="bingo-grid" id="bingo-grid">
+                    <!-- Grid populated by JS -->
+                </div>
+
+                <div class="bingo-game-actions">
+                    <button id="claim-bingo-btn" class="bingo-btn bingo-btn-secondary" disabled>
+                        Claim Bingo!
+                    </button>
+                    <button id="end-game-btn" class="bingo-btn bingo-btn-outline">
+                        End Game
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Match Input Modal -->
+        <div id="match-modal" class="bingo-modal">
+            <div class="bingo-modal-content">
+                <button class="bingo-modal-close" id="modal-close">&times;</button>
+                <h3 class="bingo-modal-title">Who's your match?</h3>
+                <p class="bingo-modal-prompt" id="modal-prompt"></p>
+
+                <form id="match-form">
+                    <div class="bingo-form-group">
+                        <label for="match-name">Their Name</label>
+                        <input type="text" id="match-name" name="match-name" placeholder="Enter their name" required>
+                    </div>
+
+                    <p class="bingo-match-hint">Each person can only be entered twice on your grid.</p>
+
+                    <div class="bingo-modal-actions">
+                        <button type="button" class="bingo-btn bingo-btn-outline" id="modal-cancel">Cancel</button>
+                        <button type="submit" class="bingo-btn bingo-btn-primary">Submit Match</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Completion Screen -->
+        <div id="completion-screen" class="bingo-screen">
+            <div class="bingo-container">
+                <div class="bingo-completion-content">
+                    <div class="bingo-completion-icon">✓</div>
+                    <h2 class="bingo-title">Well Done!</h2>
+                    <p class="bingo-subtitle" id="completion-message"></p>
+
+                    <div class="bingo-stats-card">
+                        <div class="bingo-stat">
+                            <span class="bingo-stat-value" id="final-matches">0</span>
+                            <span class="bingo-stat-label">Matches Made</span>
+                        </div>
+                        <div class="bingo-stat">
+                            <span class="bingo-stat-value" id="unique-people">0</span>
+                            <span class="bingo-stat-label">People Met</span>
+                        </div>
+                    </div>
+
+                    <p class="bingo-completion-note">Thanks for playing! We hope you made some great connections.</p>
+
+                    <a href="index.html" class="bingo-btn bingo-btn-primary">
+                        Visit Socios <span class="bingo-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <a href="index.html" class="footer-logo">
+                <img src="assets/logo.png" alt="Socios">
+            </a>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/socios_co/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@socios_co" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Explore</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Help & Support</h4>
+            <ul>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+            </ul>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        <p>Socios © 2026, All Rights Reserved</p>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('open');
+        });
+    </script>
+
+    <script src="bingo.js"></script>
+
+<script>
+        document.body.classList.add("loaded");
+        document.querySelectorAll("a").forEach(function(link) {
+            link.addEventListener("click", function(e) {
+                var href = this.getAttribute("href");
+                if (href && !href.startsWith("#") && !href.startsWith("mailto") && !href.startsWith("http") && !href.startsWith("tel")) {
+                    e.preventDefault();
+                    document.body.classList.remove("loaded");
+                    var target = href;
+                    setTimeout(function() { window.location.href = target; }, 300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

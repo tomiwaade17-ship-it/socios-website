@@ -1,0 +1,478 @@
+/* ===== SOCIOS HUMAN BINGO - BRANDED STYLES ===== */
+
+.bingo-app {
+    background: #F9F8F4;
+    min-height: 100vh;
+    padding-top: 70px;
+}
+
+/* Screens */
+.bingo-screen {
+    display: none;
+    min-height: calc(100vh - 70px);
+}
+
+.bingo-screen.active {
+    display: block;
+}
+
+/* Container */
+.bingo-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    min-height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+}
+
+.bingo-game-container {
+    max-width: 640px;
+    padding: 24px;
+}
+
+/* Hero */
+.bingo-hero {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.bingo-eyebrow {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #A3968D;
+    font-family: 'Aileron', sans-serif;
+    margin-bottom: 16px;
+}
+
+.bingo-title {
+    font-family: Georgia, serif;
+    font-size: 36px;
+    font-weight: normal;
+    color: #3D1F1F;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+}
+
+.bingo-subtitle {
+    font-size: 15px;
+    color: #262626;
+    font-family: 'Aileron', sans-serif;
+}
+
+/* Form */
+.bingo-form {
+    flex: 1;
+}
+
+.bingo-form-group {
+    margin-bottom: 24px;
+}
+
+.bingo-form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #3D1F1F;
+    margin-bottom: 8px;
+    font-family: 'Aileron', sans-serif;
+}
+
+.bingo-form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-family: 'Aileron', sans-serif;
+    border: 1px solid #e8e2d6;
+    border-radius: 4px;
+    background: #fff;
+    color: #262626;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bingo-form-group input:focus {
+    outline: none;
+    border-color: #3D1F1F;
+    box-shadow: 0 0 0 3px rgba(61, 31, 31, 0.08);
+}
+
+.bingo-form-group input::placeholder {
+    color: #A3968D;
+}
+
+/* Buttons */
+.bingo-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: 'Aileron', sans-serif;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.bingo-btn-primary {
+    width: 100%;
+    background: #3D1F1F;
+    color: #fff;
+}
+
+.bingo-btn-primary:hover {
+    background: #2a1515;
+}
+
+.bingo-btn-primary:disabled {
+    background: #DEDACF;
+    color: #A3968D;
+    cursor: not-allowed;
+}
+
+.bingo-btn-secondary {
+    background: #3D1F1F;
+    color: #fff;
+}
+
+.bingo-btn-secondary:hover {
+    background: #2a1515;
+}
+
+.bingo-btn-secondary:disabled {
+    background: #DEDACF;
+    color: #A3968D;
+    cursor: not-allowed;
+}
+
+.bingo-btn-outline {
+    background: transparent;
+    color: #3D1F1F;
+    border: 1px solid #3D1F1F;
+}
+
+.bingo-btn-outline:hover {
+    background: #DEDACF;
+}
+
+.bingo-arrow {
+    font-size: 15px;
+}
+
+/* Game Header */
+.bingo-game-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e8e2d6;
+}
+
+.bingo-header-left, .bingo-header-right {
+    flex: 1;
+}
+
+.bingo-header-right {
+    text-align: right;
+}
+
+.bingo-header-center {
+    flex: 2;
+    text-align: center;
+}
+
+.bingo-player-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #262626;
+    font-family: 'Aileron', sans-serif;
+}
+
+.bingo-match-count {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3D1F1F;
+    background: #DEDACF;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: 'Aileron', sans-serif;
+}
+
+/* Bingo Status */
+.bingo-status {
+    text-align: center;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-family: 'Aileron', sans-serif;
+    display: none;
+}
+
+.bingo-status.has-bingo {
+    display: block;
+    background: #3D1F1F;
+    color: #fff;
+    animation: bingoPulse 2s infinite;
+}
+
+@keyframes bingoPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* Bingo Grid */
+.bingo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-bottom: 24px;
+}
+
+.bingo-cell {
+    aspect-ratio: 1;
+    background: #fff;
+    border: 1px solid #e8e2d6;
+    border-radius: 4px;
+    padding: 4px;
+    font-size: 0.65rem;
+    line-height: 1.3;
+    color: #262626;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Aileron', sans-serif;
+    font-weight: 400;
+    overflow: hidden;
+}
+
+.bingo-cell:hover:not(.matched):not(.center) {
+    background: #F9F8F4;
+    border-color: #3D1F1F;
+    transform: scale(1.02);
+}
+
+.bingo-cell.matched {
+    background: #3D1F1F;
+    color: #fff;
+    border-color: #3D1F1F;
+    cursor: default;
+}
+
+.bingo-cell.matched .cell-prompt {
+    font-size: 0.5rem;
+    opacity: 0.75;
+}
+
+.bingo-cell.matched .cell-match {
+    font-weight: 600;
+    font-size: 0.7rem;
+    margin-top: 2px;
+}
+
+.bingo-cell.center {
+    background: #DEDACF;
+    border-color: #d4cebb;
+    cursor: default;
+    font-family: Georgia, serif;
+    color: #3D1F1F;
+}
+
+/* Game Actions */
+.bingo-game-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.bingo-game-actions .bingo-btn {
+    flex: 1;
+}
+
+/* Modal */
+.bingo-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(38, 38, 38, 0.5);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.bingo-modal.active {
+    display: flex;
+}
+
+.bingo-modal-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 32px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.bingo-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #A3968D;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.bingo-modal-close:hover {
+    color: #3D1F1F;
+}
+
+.bingo-modal-title {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    color: #3D1F1F;
+    margin-bottom: 8px;
+}
+
+.bingo-modal-prompt {
+    font-size: 14px;
+    color: #262626;
+    margin-bottom: 24px;
+    padding: 14px;
+    background: #F9F8F4;
+    border-radius: 4px;
+    font-style: italic;
+    border-left: 3px solid #3D1F1F;
+    font-family: 'Aileron', sans-serif;
+}
+
+.bingo-match-hint {
+    font-size: 12px;
+    color: #A3968D;
+    margin-bottom: 24px;
+    font-family: 'Aileron', sans-serif;
+}
+
+.bingo-modal-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.bingo-modal-actions .bingo-btn {
+    flex: 1;
+}
+
+/* Completion Screen */
+.bingo-completion-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.bingo-completion-icon {
+    font-size: 56px;
+    margin-bottom: 24px;
+    color: #3D1F1F;
+}
+
+.bingo-completion-content .bingo-title {
+    margin-bottom: 16px;
+}
+
+.bingo-stats-card {
+    display: flex;
+    gap: 32px;
+    background: #fff;
+    padding: 32px;
+    border-radius: 8px;
+    margin: 32px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    border: 1px solid #e8e2d6;
+}
+
+.bingo-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bingo-stat-value {
+    font-family: Georgia, serif;
+    font-size: 40px;
+    font-weight: normal;
+    color: #3D1F1F;
+}
+
+.bingo-stat-label {
+    font-size: 11px;
+    color: #A3968D;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Aileron', sans-serif;
+    margin-top: 4px;
+}
+
+.bingo-completion-note {
+    font-size: 14px;
+    color: #262626;
+    margin-bottom: 32px;
+    font-family: 'Aileron', sans-serif;
+}
+
+/* Error State */
+.error-message {
+    font-size: 12px;
+    color: #c53030;
+    margin-top: 6px;
+    font-family: 'Aileron', sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .bingo-cell {
+        font-size: 0.55rem;
+        padding: 2px;
+    }
+
+    .bingo-grid {
+        gap: 4px;
+    }
+
+    .bingo-title {
+        font-size: 28px;
+    }
+}
+
+@media (min-width: 500px) {
+    .bingo-cell {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .bingo-app {
+        padding-top: 60px;
+    }
+    .bingo-container {
+        padding: 32px 20px;
+    }
+}
