@@ -5678,7 +5678,9 @@ body.loaded {
 }
 
 .funzone-title {
-    font-family: Georgia, serif;
+    font-family: 'Aileron', sans-serif;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
     font-size: 40px;
     line-height: 1.25;
     color: #F9F8F4;
@@ -5737,4 +5739,28 @@ body.loaded {
     .funzone-title {
         font-size: 26px;
     }
+}
+/* ===== FUN ZONE POLAROID SIZE AND POSITION FIX ===== */
+.funzone-polaroid {
+    width: 180px !important;
+}
+.funzone-polaroid-2,
+.funzone-polaroid-3 {
+    width: 170px !important;
+}
+.funzone-polaroid-1 {
+    top: 30px !important;
+    left: 100px !important;
+}
+.funzone-polaroid-2 {
+    top: 60px !important;
+    right: 110px !important;
+}
+.funzone-polaroid-3 {
+    bottom: 30px !important;
+    left: 120px !important;
+}
+.funzone-polaroid-4 {
+    bottom: 20px !important;
+    right: 90px !important;
 }
