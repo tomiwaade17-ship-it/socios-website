@@ -4,15 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events — Socios</title>
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://socios.community/events.html">
-    <meta property="og:title" content="Events — Socios">
-    <meta property="og:image" content="https://res.cloudinary.com/dlergl99d/image/upload/v1781168382/DSC_5316_n2ckcr.jpg">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://socios.community/events.html">
-    <meta property="og:title" content="Events — Socios">
-    <meta property="og:image" content="https://res.cloudinary.com/dlergl99d/image/upload/v1781168382/DSC_5316_n2ckcr.jpg">
-    <meta name="description" content="Discover upcoming and past Socios events in Budapest. Music, art, culture and meaningful connections await you.">
+    <meta name="description" content="See upcoming Socios events in Budapest and browse past gatherings — social events for young professionals and creatives.">
     <link rel="canonical" href="https://socios.community/events.html">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="style.css">
@@ -44,7 +36,7 @@
     <div class="page-wrapper">
 
         <!-- UPCOMING EVENTS -->
-        <section class="upcoming-events-new">
+        <section class="upcoming-events-new" id="upcomingEventsSection">
             <h2 class="section-title">Upcoming Events</h2>
             <div class="upcoming-events-hero" id="upcomingSection">
                 <div class="upcoming-events-bg" id="upcomingBg"></div>
@@ -74,10 +66,9 @@
                 <a href="index.html" class="footer-logo">
                     <img src="assets/logo.png" alt="Socios">
                 </a>
-                <div class="footer-socials"><a href="https://www.instagram.com/socios_co/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.tiktok.com/@socios_co" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                    
-                    
-                    
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/socios_co/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@socios_co" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -87,7 +78,7 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="events.html">Events</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="blog.html">Blog</a></li>
+                    <li><a href="blog.html">Blog</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -109,7 +100,7 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
+        hamburger.addEventListener('click', function() {
             navLinks.classList.toggle('open');
         });
     </script>
@@ -117,16 +108,18 @@
     <!-- GOOGLE SHEETS DATA -->
     <script src="data.js"></script>
     <script>
-        // Load upcoming event
         async function loadEvents() {
             const events = await fetchSheet(SHEETS.events);
-            if (!events || events.length === 0) return;
+            if (!events || events.length === 0) {
+                document.getElementById('upcomingEventsSection').style.display = 'none';
+                return;
+            }
             const event = events[0];
 
-            document.getElementById('upcomingBg').style.backgroundImage = `url('${event.image}')`;
+            document.getElementById('upcomingBg').style.backgroundImage = 'url(' + event.image + ')';
 
             const cardImg = document.getElementById('upcomingCardImage');
-            cardImg.style.backgroundImage = `url('${event.image}')`;
+            cardImg.style.backgroundImage = 'url(' + event.image + ')';
             cardImg.style.width = '200px';
             cardImg.style.height = '200px';
             cardImg.style.backgroundSize = 'cover';
@@ -139,7 +132,6 @@
             document.getElementById('upcomingBtn').href = event.link;
         }
 
-        // Load past events from Gallery sheet
         async function loadPastEvents() {
             try {
                 const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=1789159689&single=true&output=csv');
@@ -181,7 +173,7 @@
     <script>
         const lenis = new Lenis({
             duration: 1,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
             smoothTouch: false,
         });
         function raf(time) {
