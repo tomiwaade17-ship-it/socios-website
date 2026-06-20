@@ -126,7 +126,7 @@
         </section>
 
         <!-- UPCOMING EVENTS -->
-        <section class="upcoming-events-new">
+        <section class="upcoming-events-new" id="upcomingEventsSection">
             <h2 class="section-title">Upcoming Events</h2>
             <div class="upcoming-events-hero" id="upcomingSection">
                 <div class="upcoming-events-bg" id="upcomingBg"></div>
@@ -465,8 +465,7 @@
     <script>
         async function loadHomeEvents() {
             const events = await fetchSheet(SHEETS.events);
-            if (!events || events.length === 0) return;
-            const event = events[0];
+if (!events || events.length === 0) { document.getElementById('upcomingEventsSection').style.display = 'none'; return; }            const event = events[0];
 
             document.getElementById('upcomingBg').style.backgroundImage = 'url(' + event.image + ')';
 
