@@ -49,7 +49,9 @@
 }
 
 .bingo-title {
-    font-family: Georgia, serif;
+    font-family: 'Aileron', sans-serif;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
     font-size: 36px;
     font-weight: normal;
     color: #3D1F1F;
@@ -287,7 +289,9 @@
     background: #DEDACF;
     border-color: #d4cebb;
     cursor: default;
-    font-family: Georgia, serif;
+    font-family: 'Aileron', sans-serif;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
     color: #3D1F1F;
 }
 
@@ -344,7 +348,9 @@
 }
 
 .bingo-modal-title {
-    font-family: Georgia, serif;
+    font-family: 'Aileron', sans-serif;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
     font-size: 22px;
     color: #3D1F1F;
     margin-bottom: 8px;
@@ -416,7 +422,9 @@
 }
 
 .bingo-stat-value {
-    font-family: Georgia, serif;
+    font-family: 'Aileron', sans-serif;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
     font-size: 40px;
     font-weight: normal;
     color: #3D1F1F;
