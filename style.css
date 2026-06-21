@@ -5764,3 +5764,10 @@ body.loaded {
     bottom: 20px !important;
     right: 90px !important;
 }
+
+/* ===== FUN ZONE BACKGROUND IMAGE ===== */
+.funzone-preview {
+    background-image: linear-gradient(rgba(61, 31, 31, 0.82), rgba(61, 31, 31, 0.82)), url('assets/funzone-bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
