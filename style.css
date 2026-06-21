@@ -5146,7 +5146,7 @@ body.loaded {
 /* ===== HERO DESKTOP LOCK ===== */
 @media (min-width: 769px) {
     .hero-content h1 {
-        font-size: 48px !important;
+        font-size: 42px !important;
         line-height: 1.2 !important;
     }
 }
