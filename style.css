@@ -5875,7 +5875,7 @@ body.loaded {
 /* ===== TESTIMONIAL QUOTE POSITION MOBILE FIX ===== */
 @media (max-width: 768px) {
     .testimonial-quote-open {
-        top: 90px !important;
+        top: 70px !important;
         left: 20px !important;
     }
     .testimonial-quote-close {
