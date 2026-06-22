@@ -5827,3 +5827,35 @@ body.loaded {
     height: 40px;
     opacity: 0.4;
 }
+/* ===== TESTIMONIAL SECTION QUOTE MARKS ===== */
+.testimonial {
+    position: relative;
+}
+
+.testimonial-quote-open {
+    position: absolute;
+    top: 24px;
+    left: 40px;
+    width: 80px;
+    height: 80px;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.testimonial-quote-close {
+    position: absolute;
+    bottom: 24px;
+    right: 40px;
+    width: 80px;
+    height: 80px;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .testimonial-quote-open,
+    .testimonial-quote-close {
+        width: 50px;
+        height: 50px;
+    }
+}
