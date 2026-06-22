@@ -5737,7 +5737,7 @@ body.loaded {
         max-width: 320px;
     }
     .funzone-title {
-        font-size: 26px;
+        font-size: 32px !important;
     }
 }
 /* ===== FUN ZONE POLAROID SIZE AND POSITION FIX ===== */
@@ -5806,6 +5806,6 @@ body.loaded {
         max-width: 260px !important;
     }
     .funzone-title {
-        font-size: 22px !important;
+        font-size: 28px !important;
     }
 }
