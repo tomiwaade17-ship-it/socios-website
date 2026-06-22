@@ -5771,3 +5771,41 @@ body.loaded {
     background-size: cover;
     background-position: center;
 }
+/* ===== FUN ZONE MOBILE FIX ===== */
+@media (max-width: 768px) {
+    .funzone-preview {
+        min-height: 500px;
+        padding: 60px 20px;
+    }
+    .funzone-polaroid {
+        width: 90px !important;
+        padding: 6px 6px 18px !important;
+    }
+    .funzone-polaroid-2,
+    .funzone-polaroid-3 {
+        width: 80px !important;
+    }
+    .funzone-polaroid-1 {
+        top: 16px !important;
+        left: 12px !important;
+    }
+    .funzone-polaroid-2 {
+        top: 30px !important;
+        right: 12px !important;
+    }
+    .funzone-polaroid-3 {
+        bottom: 16px !important;
+        left: 12px !important;
+    }
+    .funzone-polaroid-4 {
+        bottom: 10px !important;
+        right: 12px !important;
+    }
+    .funzone-content {
+        padding-top: 80px !important;
+        max-width: 260px !important;
+    }
+    .funzone-title {
+        font-size: 22px !important;
+    }
+}
