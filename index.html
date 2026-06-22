@@ -618,6 +618,37 @@
         }
     </script>
 
+    <!-- FUN ZONE POLAROID ANIMATION -->
+    <script>
+        (function() {
+            var p1 = document.querySelector('.funzone-polaroid-1');
+            var p2 = document.querySelector('.funzone-polaroid-2');
+            var p3 = document.querySelector('.funzone-polaroid-3');
+            var p4 = document.querySelector('.funzone-polaroid-4');
+            if (!p1) return;
+
+            var step = 0;
+            var transforms = [
+                ['-7deg', '6deg', '8deg', '-5deg'],
+                ['6deg', '8deg', '-5deg', '-7deg'],
+                ['8deg', '-5deg', '-7deg', '6deg'],
+                ['-5deg', '-7deg', '6deg', '8deg']
+            ];
+
+            [p1, p2, p3, p4].forEach(function(p) {
+                p.style.transition = 'transform 1s ease-in-out';
+            });
+
+            setInterval(function() {
+                step = (step + 1) % 4;
+                p1.style.transform = 'rotate(' + transforms[step][0] + ')';
+                p2.style.transform = 'rotate(' + transforms[step][1] + ')';
+                p3.style.transform = 'rotate(' + transforms[step][2] + ')';
+                p4.style.transform = 'rotate(' + transforms[step][3] + ')';
+            }, 2000);
+        })();
+    </script>
+
     <script>
         document.body.classList.add("loaded");
         document.querySelectorAll("a").forEach(function(link) {
