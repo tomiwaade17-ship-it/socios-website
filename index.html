@@ -469,6 +469,8 @@
             const events = await fetchSheet(SHEETS.events);
 if (!events || events.length === 0) { return; }
             document.getElementById('upcomingEventsSection').style.display = 'block';
+            document.getElementById('upcomingEventsSection').style.display = 'block';
+document.getElementById('upcomingCard').style.visibility = 'visible';
             document.getElementById('upcomingBg').style.backgroundImage = 'url(' + event.image + ')';
 
             const cardImg = document.getElementById('upcomingCardImage');
