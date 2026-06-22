@@ -311,11 +311,13 @@
                 card.setAttribute('data-pos', pos);
                 var clipOpacity = pos === 0 ? '1' : '0';
                 card.innerHTML =
+                    '<img src="assets/quote-open.svg" class="tstack-quote-open" alt="">' +
                     '<svg class="tstack-clip" style="opacity:' + clipOpacity + '" viewBox="0 0 18 48" fill="none" xmlns="http://www.w3.org/2000/svg">' +
                         '<path d="M9 2 C5 2 2 5 2 8 L2 38 C2 42 5 46 9 46 C13 46 16 42 16 38 L16 12 C16 9 14 7 11 7 L8 7 C6 7 4.5 8.5 4.5 10.5 L4.5 36 C4.5 38 6 39.5 8 39.5 L10 39.5" stroke="#3D1F1F" stroke-width="1.8" stroke-linecap="round" fill="none"/>' +
                     '</svg>' +
-                    '<blockquote class="tstack-quote">"' + t.quote + '"</blockquote>' +
-                    '<span class="tstack-author">-- ' + t.author + '</span>';
+                    '<blockquote class="tstack-quote">' + t.quote + '</blockquote>' +
+                    '<span class="tstack-author">-- ' + t.author + '</span>' +
+                    '<img src="assets/quote-close.svg" class="tstack-quote-close" alt="">';
                 tApplyStyle(card, pos);
                 card.style.pointerEvents = pos === 0 ? 'all' : 'none';
                 card.style.cursor = pos === 0 ? 'pointer' : 'default';

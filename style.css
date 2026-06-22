@@ -5809,3 +5809,21 @@ body.loaded {
         font-size: 28px !important;
     }
 }
+/* ===== TESTIMONIAL QUOTE MARKS ===== */
+.tstack-quote-open {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.4;
+}
+
+.tstack-quote-close {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.4;
+}
