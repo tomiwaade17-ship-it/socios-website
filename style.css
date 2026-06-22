@@ -5864,3 +5864,4 @@ body.loaded {
 .testimonial-quote-close {
     opacity: 1 !important;
 }
+#upcomingEventsSection { display: none !important; }
