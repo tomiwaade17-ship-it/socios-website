@@ -5875,11 +5875,16 @@ body.loaded {
 /* ===== TESTIMONIAL QUOTE POSITION MOBILE FIX ===== */
 @media (max-width: 768px) {
     .testimonial-quote-open {
-        top: 115px !important;
+        top: 130px !important;
         left: 20px !important;
     }
     .testimonial-quote-close {
         bottom: 20px !important;
         right: 20px !important;
     }
-}@media (max-width: 768px) { .testimonial .section-title { margin-bottom: 32px !important; } }
+
+@media (max-width: 768px) {
+    .testimonial .section-title {
+        margin-bottom: 56px !important;
+    }
+}
