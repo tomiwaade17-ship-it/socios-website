@@ -5864,4 +5864,22 @@ body.loaded {
 .testimonial-quote-close {
     opacity: 1 !important;
 }
-#upcomingEventsSection { display: none !important; }
+/* ===== HIDE UPCOMING EVENTS UNTIL DATA LOADS ===== */
+#upcomingEventsSection {
+    display: none;
+}
+/* ===== HIDE UPCOMING CARD UNTIL DATA LOADS ===== */
+#upcomingCard {
+    visibility: hidden;
+}
+/* ===== TESTIMONIAL QUOTE POSITION MOBILE FIX ===== */
+@media (max-width: 768px) {
+    .testimonial-quote-open {
+        top: 60px !important;
+        left: 20px !important;
+    }
+    .testimonial-quote-close {
+        bottom: 20px !important;
+        right: 20px !important;
+    }
+}
