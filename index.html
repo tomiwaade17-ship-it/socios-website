@@ -467,8 +467,8 @@
     <script>
         async function loadHomeEvents() {
             const events = await fetchSheet(SHEETS.events);
-if (!events || events.length === 0) { document.getElementById('upcomingEventsSection').style.display = 'none'; return; }            const event = events[0];
-
+if (!events || events.length === 0) { return; }
+            document.getElementById('upcomingEventsSection').style.display = 'block';
             document.getElementById('upcomingBg').style.backgroundImage = 'url(' + event.image + ')';
 
             const cardImg = document.getElementById('upcomingCardImage');
