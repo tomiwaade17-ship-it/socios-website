@@ -5888,3 +5888,36 @@ body.loaded {
         margin-bottom: 56px !important;
     }
 }
+/* ===== FUN ZONE POLAROID ANIMATION ===== */
+@keyframes polaroidSpin1 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-7deg); }
+}
+@keyframes polaroidSpin2 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(6deg); }
+}
+@keyframes polaroidSpin3 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(8deg); }
+}
+@keyframes polaroidSpin4 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-5deg); }
+}
+
+.funzone-polaroid-1 {
+    animation: polaroidSpin1 0.8s ease-out forwards;
+}
+.funzone-polaroid-2 {
+    animation: polaroidSpin2 0.8s ease-out 0.15s forwards;
+    transform: rotate(0deg);
+}
+.funzone-polaroid-3 {
+    animation: polaroidSpin3 0.8s ease-out 0.3s forwards;
+    transform: rotate(0deg);
+}
+.funzone-polaroid-4 {
+    animation: polaroidSpin4 0.8s ease-out 0.45s forwards;
+    transform: rotate(0deg);
+}
