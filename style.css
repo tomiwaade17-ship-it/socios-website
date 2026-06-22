@@ -5859,3 +5859,8 @@ body.loaded {
         height: 50px;
     }
 }
+/* ===== TESTIMONIAL QUOTE MARKS OPACITY FIX ===== */
+.testimonial-quote-open,
+.testimonial-quote-close {
+    opacity: 1 !important;
+}
