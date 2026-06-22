@@ -5882,4 +5882,4 @@ body.loaded {
         bottom: 20px !important;
         right: 20px !important;
     }
-}
+}@media (max-width: 768px) { .testimonial .section-title { margin-bottom: 32px !important; } }
