@@ -618,51 +618,6 @@
         }
     </script>
 
-    <!-- FUN ZONE POLAROID ANIMATION -->
-    <script>
-        (function() {
-            var positions = [
-                { top: '30px', left: '100px', right: 'auto', bottom: 'auto', rotate: '-7deg' },
-                { top: '60px', right: '110px', left: 'auto', bottom: 'auto', rotate: '6deg' },
-                { bottom: '30px', left: '120px', top: 'auto', right: 'auto', rotate: '8deg' },
-                { bottom: '20px', right: '90px', top: 'auto', left: 'auto', rotate: '-5deg' }
-            ];
-
-            var polaroids = [
-                document.querySelector('.funzone-polaroid-1'),
-                document.querySelector('.funzone-polaroid-2'),
-                document.querySelector('.funzone-polaroid-3'),
-                document.querySelector('.funzone-polaroid-4')
-            ];
-
-            if (!polaroids[0]) return;
-
-            polaroids.forEach(function(p) {
-                p.style.transition = 'top 1.2s ease-in-out, left 1.2s ease-in-out, right 1.2s ease-in-out, bottom 1.2s ease-in-out, transform 1.2s ease-in-out';
-            });
-
-            var current = 0;
-
-            function applyPosition(el, pos) {
-                el.style.top = pos.top || 'auto';
-                el.style.left = pos.left || 'auto';
-                el.style.right = pos.right || 'auto';
-                el.style.bottom = pos.bottom || 'auto';
-                el.style.transform = 'rotate(' + pos.rotate + ')';
-            }
-
-            function rotatePolaroids() {
-                current = (current + 1) % 4;
-                polaroids.forEach(function(p, i) {
-                    var posIndex = (i + current) % 4;
-                    applyPosition(p, positions[posIndex]);
-                });
-            }
-
-            setInterval(rotatePolaroids, 2500);
-        })();
-    </script>
-
     <script>
         document.body.classList.add("loaded");
         document.querySelectorAll("a").forEach(function(link) {
