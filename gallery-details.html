@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery — Socios</title>
-    <meta name="description" content="Browse moments from past Socios events in Budapest. See the energy, people and vibes that make Socios unforgettable.">
-    <link rel="canonical" href="https://socios.community/gallery-details.html">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         .gallery-details-hero img {
             opacity: 0;
@@ -61,10 +57,9 @@
             <li><a href="about.html">About</a></li>
             <li><a href="events.html">Events</a></li>
             <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-        <a href="index.html#join" class="nav-cta">Join Socios</a>
+        <a href="#" class="nav-cta">Join Socios</a>
         <button class="hamburger" id="hamburger">
             <span></span>
             <span></span>
@@ -84,7 +79,6 @@
         <!-- GALLERY DETAILS GRID -->
         <section class="gallery-details-section">
             <div class="gallery-details-grid" id="galleryGrid">
-                <!-- loading skeleton -->
                 <div class="gallery-skeleton-grid">
                     <div class="skeleton-item"></div>
                     <div class="skeleton-item"></div>
@@ -105,10 +99,9 @@
                 <a href="index.html" class="footer-logo">
                     <img src="assets/logo.png" alt="Socios">
                 </a>
-                <div class="footer-socials"><a href="https://www.instagram.com/socios_co/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.tiktok.com/@socios_co" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                    
-                    
-                    
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/socios_co/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@socios_co" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -118,7 +111,6 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="events.html">Events</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="blog.html">Blog</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -140,7 +132,7 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
+        hamburger.addEventListener('click', function() {
             navLinks.classList.toggle('open');
         });
     </script>
@@ -204,7 +196,6 @@
             const collection = params.get('collection');
             if (!collection) return;
 
-            // Set title immediately from URL param — no flash
             document.getElementById('galleryTitle').textContent = collection;
             document.title = collection + ' — Socios';
 
@@ -219,8 +210,7 @@
                     const heroImg = document.getElementById('galleryHeroImg');
                     heroImg.src = match.coverimage;
                     heroImg.alt = collection;
-                    heroImg.onload = () => heroImg.classList.add('loaded');
-                    // In case image already cached
+                    heroImg.onload = function() { heroImg.classList.add('loaded'); };
                     if (heroImg.complete) heroImg.classList.add('loaded');
                 }
             }
@@ -229,11 +219,11 @@
             const images = details.filter(d => d.collection === collection);
             const grid = document.getElementById('galleryGrid');
             if (images.length) {
-                grid.innerHTML = images.map((img, i) => `
-                    <div class="gallery-details-item ${i === 1 ? 'tall' : ''}">
-                        <img src="${img.image}" alt="${collection}" loading="lazy" style="object-position: top;">
-                    </div>
-                `).join('');
+                grid.innerHTML = images.map(function(img, i) {
+                    return '<div class="gallery-details-item ' + (i === 1 ? 'tall' : '') + '">' +
+                        '<img src="' + img.image + '" alt="' + collection + '" loading="lazy" style="object-position: top;">' +
+                        '</div>';
+                }).join('');
             }
         }
 
@@ -245,7 +235,7 @@
     <script>
         const lenis = new Lenis({
             duration: 1,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
             smoothTouch: false,
         });
         function raf(time) {
@@ -255,19 +245,5 @@
         requestAnimationFrame(raf);
     </script>
 
-<script>
-        document.body.classList.add("loaded");
-        document.querySelectorAll("a").forEach(function(link) {
-            link.addEventListener("click", function(e) {
-                var href = this.getAttribute("href");
-                if (href && !href.startsWith("#") && !href.startsWith("mailto") && !href.startsWith("http") && !href.startsWith("tel")) {
-                    e.preventDefault();
-                    document.body.classList.remove("loaded");
-                    var target = href;
-                    setTimeout(function() { window.location.href = target; }, 300);
-                }
-            });
-        });
-    </script>
 </body>
 </html>
