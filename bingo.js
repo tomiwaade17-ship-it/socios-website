@@ -31,9 +31,7 @@ const BINGO_PROMPTS = [
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwp1P5br0cwxLUVwELiCf3qKY3lV3Vwp1hEP4M-IjgrTIviEVM_a3dYcyG9L7k0F0pX/exec';
 
 const TOTAL_SQUARES = 24;
-const APP_VERSION = '1.0.0';
 const STORAGE_KEY = 'socios_bingo_state';
-const VERSION_KEY = 'socios_bingo_version';
 
 let state = {
     player: null,
@@ -69,13 +67,9 @@ const elements = {
 let currentCellIndex = null;
 
 function init() {
-    const savedVersion = localStorage.getItem(VERSION_KEY);
-    if (savedVersion !== APP_VERSION) {
-        localStorage.removeItem(STORAGE_KEY);
-        localStorage.setItem(VERSION_KEY, APP_VERSION);
-    }
+    // Always start fresh on page load
+    localStorage.removeItem(STORAGE_KEY);
     setupEventListeners();
-    loadSavedState();
 }
 
 function setupEventListeners() {
@@ -93,43 +87,6 @@ function setupEventListeners() {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeModal();
     });
-}
-
-function loadSavedState() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-        try {
-            const parsed = JSON.parse(saved);
-            if (parsed.player && parsed.grid) {
-                state = parsed;
-                if (!state.nameUsage) state.nameUsage = {};
-                rebuildNameUsage();
-                showScreen('game');
-                renderGrid();
-                updateUI();
-            }
-        } catch (e) {
-            localStorage.removeItem(STORAGE_KEY);
-        }
-    }
-}
-
-function rebuildNameUsage() {
-    state.nameUsage = {};
-    Object.values(state.matches).forEach(match => {
-        if (match && match.name && match.name !== 'FREE') {
-            const normalizedName = match.name.toLowerCase();
-            state.nameUsage[normalizedName] = (state.nameUsage[normalizedName] || 0) + 1;
-        }
-    });
-}
-
-function saveState() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-
-function clearState() {
-    localStorage.removeItem(STORAGE_KEY);
 }
 
 function showScreen(screenName) {
@@ -156,7 +113,6 @@ async function handleRegistration(e) {
     state.hasBingo = false;
 
     await submitToSheets('register', { name, email, profession, timestamp: state.startTime });
-    saveState();
     showScreen('game');
     renderGrid();
     updateUI();
@@ -235,7 +191,6 @@ async function handleMatchSubmit(e) {
         timestamp: new Date().toISOString()
     });
 
-    saveState();
     closeModal();
     renderGrid();
     updateUI();
@@ -266,7 +221,6 @@ function checkForBingo() {
         elements.bingoStatus.textContent = 'BINGO! You filled the entire grid!';
         elements.bingoStatus.classList.add('has-bingo');
         elements.claimBingoBtn.disabled = false;
-        saveState();
         return true;
     }
     return false;
@@ -310,7 +264,6 @@ function finishGame(gotBingo) {
     } else {
         elements.completionMessage.textContent = `You made ${matchCount} matches with ${uniquePeople} people.`;
     }
-    clearState();
     showScreen('completion');
 }
 
