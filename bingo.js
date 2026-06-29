@@ -293,7 +293,7 @@ function finishGame(gotBingo) {
     }
 
     renderSnapshotGrid();
-    showScreen('completion');
+    showScreen('completion'); window.scrollTo(0, 0);
 }
 
 async function handleDownloadCard() {
