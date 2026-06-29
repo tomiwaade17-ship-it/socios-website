@@ -130,7 +130,7 @@ function renderGrid() {
 
         if (prompt === null) {
             cell.classList.add('center', 'matched');
-            cell.innerHTML = '<img src="assets/logo.png" alt="Socios" style="width:70%;height:70%;object-fit:contain;opacity:0.7;">';
+            cell.innerHTML = '<img src="assets/logo.png" alt="Socios" style="width:70%;height:70%;object-fit:contain;filter:invert(1);">';
             if (!state.matches[index]) {
                 state.matches[index] = { name: 'FREE', prompt: null };
             }
@@ -159,7 +159,7 @@ function renderSnapshotGrid() {
 
         if (prompt === null) {
             cell.classList.add('center', 'matched');
-            cell.innerHTML = '<img src="assets/logo.png" alt="Socios" style="width:70%;height:70%;object-fit:contain;opacity:0.7;">';
+            cell.innerHTML = '<img src="assets/logo.png" alt="Socios" style="width:70%;height:70%;object-fit:contain;filter:invert(1);">';
         } else if (state.matches[index]) {
             cell.classList.add('matched');
             cell.innerHTML = `
