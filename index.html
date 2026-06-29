@@ -485,7 +485,7 @@
             document.getElementById('upcomingTitle').textContent = event.title;
             document.getElementById('upcomingTagline').textContent = event.tagline;
             document.getElementById('upcomingDate').innerHTML = event.date.toUpperCase() + '<br>' + event.time.toUpperCase();
-            document.getElementById('upcomingBtn').href = event.link;
+            if (event.link) { document.getElementById('upcomingBtn').href = event.link; }
         }
         loadHomeEvents();
     </script>
