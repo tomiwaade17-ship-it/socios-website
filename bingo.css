@@ -514,3 +514,17 @@
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-8px) rotate(3deg); }
 }
+/* ===== THE SEASONS FONT ===== */
+@font-face {
+    font-family: 'TheSeasons';
+    src: url('fonts/theseasons.otf') format('opentype');
+    font-weight: normal;
+}
+
+/* ===== SNAPSHOT CENTER CELL TEXT ===== */
+#bingo-card-snapshot .bingo-cell.center {
+    font-family: 'TheSeasons', serif !important;
+    font-size: 0.7rem !important;
+    color: #3D1F1F !important;
+    letter-spacing: 0.05em !important;
+}
