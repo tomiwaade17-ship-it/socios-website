@@ -103,9 +103,20 @@
     <div id="completion-screen" class="bingo-screen">
         <div class="bingo-container">
             <div class="bingo-completion-content">
-                <div class="bingo-completion-icon">✓</div>
+
+                <div class="bingo-completion-icon">
+                    <svg class="bingo-confetti" width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M99.6335 110.547L3.3335 156.667L49.2402 60.9465L62.8668 97.5065L99.6335 110.547Z" fill="#DEDACF"/>
+                        <path d="M99.6335 110.547L3.3335 156.667L62.8668 97.5066L99.6335 110.547Z" fill="#3D1F1F"/>
+                        <path d="M99.6336 110.547L62.8669 97.5065L49.2402 60.9465L86.0136 73.9865L99.6336 110.547Z" fill="#DEDACF"/>
+                        <path d="M83.3336 53.3333L76.6669 43.3333L83.3336 33.3333L76.6669 23.3333L83.3336 13.3333L76.6669 3.33325M103.334 79.9999L116.667 73.3333L126.667 79.9999L136.667 73.3333L146.667 79.9999L156.667 73.3333M121.5 57.6399L128.187 47.6532L139.98 49.9866L146.667 39.9999M98.1602 37.8666L101.447 26.3066L113.38 24.8933L116.667 13.3333M99.6336 110.547L62.8669 97.5066L49.2402 60.9466L86.0136 73.9866L99.6336 110.547ZM53.3336 29.9999L50.0002 33.3333L53.3336 36.6666L56.6669 33.3333L53.3336 29.9999ZM103.334 53.3333L100 56.6666L103.334 59.9999L106.667 56.6666L103.334 53.3333ZM133.334 23.3333L130 26.6666L133.334 29.9999L136.667 26.6666L133.334 23.3333ZM130 93.3332L126.667 96.6666L130 99.9999L133.334 96.6666L130 93.3332Z" stroke="#4D403A" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M99.6335 110.547L3.3335 156.667L49.2402 60.9465L62.8668 97.5065L99.6335 110.547Z" stroke="#3D1F1F" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+
                 <h2 class="bingo-title">Well Done!</h2>
                 <p class="bingo-subtitle" id="completion-message"></p>
+
                 <div class="bingo-stats-card">
                     <div class="bingo-stat">
                         <span class="bingo-stat-value" id="final-matches">0</span>
@@ -116,6 +127,7 @@
                         <span class="bingo-stat-label">People Met</span>
                     </div>
                 </div>
+
                 <div id="bingo-card-snapshot" class="bingo-card-snapshot">
                     <div class="bingo-snapshot-header">
                         <span class="bingo-snapshot-logo">Socios</span>
@@ -123,9 +135,11 @@
                     </div>
                     <div class="bingo-grid bingo-snapshot-grid" id="snapshot-grid"></div>
                 </div>
+
                 <p class="bingo-completion-note">Thanks for playing! We hope you made some great connections.</p>
                 <button id="download-card-btn" class="btn-bingo-primary" style="margin-bottom:1rem;">Download My Card</button>
                 <a href="index.html" class="btn-bingo-outline">Back to Socios</a>
+
             </div>
         </div>
     </div>
