@@ -141,7 +141,7 @@ function renderGrid() {
                 <span class="cell-match">${state.matches[index].name}</span>
             `;
         } else {
-            cell.innerHTML = `<span class="cell-prompt">${truncateText(prompt, 50)}</span>`;
+            cell.innerHTML = `<span class="cell-prompt">${truncateText(prompt, 60)}</span>`;
             cell.addEventListener('click', () => openModal(index, prompt));
         }
 
@@ -159,7 +159,7 @@ function renderSnapshotGrid() {
 
         if (prompt === null) {
             cell.classList.add('center', 'matched');
-            cell.innerHTML = '<img src="assets/logo.png" alt="Socios" style="width:70%;height:70%;object-fit:contain;filter:invert(1);">';
+            cell.innerHTML = '<span style="font-family:TheSeasons,serif;font-size:0.65rem;color:#3D1F1F;letter-spacing:0.05em;">Socios</span>';
         } else if (state.matches[index]) {
             cell.classList.add('matched');
             cell.innerHTML = `
@@ -167,7 +167,7 @@ function renderSnapshotGrid() {
                 <span class="cell-match">${state.matches[index].name}</span>
             `;
         } else {
-            cell.innerHTML = `<span class="cell-prompt">${truncateText(prompt, 50)}</span>`;
+            cell.innerHTML = `<span class="cell-prompt">${truncateText(prompt, 60)}</span>`;
         }
 
         elements.snapshotGrid.appendChild(cell);
@@ -293,7 +293,8 @@ function finishGame(gotBingo) {
     }
 
     renderSnapshotGrid();
-    showScreen('completion'); window.scrollTo(0, 0);
+    showScreen('completion');
+    window.scrollTo(0, 0);
 }
 
 async function handleDownloadCard() {
@@ -302,11 +303,17 @@ async function handleDownloadCard() {
     btn.disabled = true;
 
     try {
+        await document.fonts.ready;
         const canvas = await html2canvas(elements.bingoCardSnapshot, {
             backgroundColor: '#F9F8F4',
             scale: 2,
             useCORS: true,
-            logging: false
+            logging: false,
+            onclone: function(clonedDoc) {
+                const style = clonedDoc.createElement('style');
+                style.innerHTML = "@font-face { font-family: 'TheSeasons'; src: url('fonts/theseasons.otf') format('opentype'); } .bingo-cell.center span { font-family: 'TheSeasons', serif !important; font-size: 0.65rem !important; color: #3D1F1F !important; }";
+                clonedDoc.head.appendChild(style);
+            }
         });
 
         const link = document.createElement('a');
@@ -318,7 +325,7 @@ async function handleDownloadCard() {
         alert('Download failed. Please try again.');
     }
 
-    btn.textContent = 'Download My Card ↓';
+    btn.textContent = 'Download My Card';
     btn.disabled = false;
 }
 
