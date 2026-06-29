@@ -493,3 +493,7 @@
         font-size: 0.7rem;
     }
 }
+/* ===== COMPLETION BUTTON SPACING ===== */
+#download-card-btn {
+    margin-bottom: 1rem !important;
+}
