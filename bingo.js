@@ -137,7 +137,7 @@ function renderGrid() {
         } else if (state.matches[index]) {
             cell.classList.add('matched');
             cell.innerHTML = `
-                <span class="cell-prompt">${truncateText(prompt, 30)}</span>
+                <span class="cell-prompt">${truncateText(prompt, 60)}</span>
                 <span class="cell-match">${state.matches[index].name}</span>
             `;
         } else {
@@ -163,7 +163,7 @@ function renderSnapshotGrid() {
         } else if (state.matches[index]) {
             cell.classList.add('matched');
             cell.innerHTML = `
-                <span class="cell-prompt">${truncateText(prompt, 30)}</span>
+                <span class="cell-prompt">${truncateText(prompt, 60)}</span>
                 <span class="cell-match">${state.matches[index].name}</span>
             `;
         } else {
