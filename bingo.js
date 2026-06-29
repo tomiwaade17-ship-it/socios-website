@@ -133,7 +133,7 @@ function clearState() {
 }
 
 function showScreen(screenName) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.bingo-screen').forEach(s => s.classList.remove('active'));
     switch(screenName) {
         case 'registration': elements.registrationScreen.classList.add('active'); break;
         case 'game': elements.gameScreen.classList.add('active'); break;
@@ -201,7 +201,7 @@ function openModal(index, prompt) {
     elements.matchNameInput.value = '';
     elements.matchModal.classList.add('active');
     elements.matchNameInput.focus();
-    const errorEl = elements.matchForm.querySelector('.error-message');
+    const errorEl = elements.matchForm.querySelector('.bingo-error-message');
     if (errorEl) errorEl.remove();
 }
 
@@ -243,12 +243,12 @@ async function handleMatchSubmit(e) {
 }
 
 function showFormError(message) {
-    const existing = elements.matchForm.querySelector('.error-message');
+    const existing = elements.matchForm.querySelector('.bingo-error-message');
     if (existing) existing.remove();
     const errorEl = document.createElement('p');
-    errorEl.className = 'error-message';
+    errorEl.className = 'bingo-error-message';
     errorEl.textContent = message;
-    elements.matchForm.querySelector('.form-group').appendChild(errorEl);
+    elements.matchForm.querySelector('.bingo-form-group').appendChild(errorEl);
 }
 
 function updateUI() {
