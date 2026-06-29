@@ -34,7 +34,7 @@
 .bingo-title {
     font-family: 'Aileron', sans-serif !important;
     font-size: 2.5rem !important;
-    font-weight: 700 !important;
+    font-weight: 400 !important;
     color: #3D1F1F !important;
     margin-bottom: 0.5rem !important;
     letter-spacing: -0.04em !important;
@@ -47,6 +47,8 @@
     color: #A3968D;
     text-align: center;
     margin-bottom: 1.5rem;
+    font-family: 'Aileron', sans-serif;
+    font-weight: 400;
 }
 
 /* ===== BINGO FORM ===== */
@@ -61,7 +63,7 @@
 .bingo-form-group label {
     display: block !important;
     font-size: 0.75rem !important;
-    font-weight: 500 !important;
+    font-weight: 400 !important;
     color: #3D1F1F !important;
     margin-bottom: 0.5rem !important;
     font-family: 'Aileron', sans-serif !important;
@@ -74,9 +76,10 @@
     padding: 1rem !important;
     font-size: 1rem !important;
     font-family: 'Aileron', sans-serif !important;
+    font-weight: 400 !important;
     border: 1px solid #DEDACF !important;
-    border-radius: 4px !important;
-    background: #F9F8F4 !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
     transition: border-color 0.2s !important;
     color: #3D1F1F !important;
     box-shadow: none !important;
@@ -90,6 +93,7 @@
 
 .bingo-form-group input::placeholder {
     color: #A3968D !important;
+    font-weight: 400 !important;
 }
 
 /* ===== BINGO BUTTONS ===== */
@@ -97,59 +101,64 @@
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 0.5rem !important;
     width: 100% !important;
     padding: 1rem 2rem !important;
     font-size: 0.75rem !important;
-    font-weight: 500 !important;
+    font-weight: 400 !important;
     font-family: 'Aileron', sans-serif !important;
-    letter-spacing: 0.1em !important;
+    letter-spacing: 0.15em !important;
     text-transform: uppercase !important;
-    background: #3D1F1F !important;
+    background-color: #3D1F1F !important;
     color: #F9F8F4 !important;
     border: none !important;
     border-radius: 0 !important;
     cursor: pointer !important;
-    transition: all 0.2s !important;
+    transition: opacity 0.2s !important;
     text-decoration: none !important;
     margin-bottom: 0 !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
 }
 
 .btn-bingo-primary:hover {
-    background: #262626 !important;
+    background-color: #3D1F1F !important;
     color: #F9F8F4 !important;
+    opacity: 0.85 !important;
 }
 
 .btn-bingo-primary:disabled {
-    background: #DEDACF !important;
+    background-color: #DEDACF !important;
     color: #A3968D !important;
     cursor: not-allowed !important;
+    opacity: 1 !important;
 }
 
 .btn-bingo-outline {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 0.5rem !important;
     width: 100% !important;
     padding: 1rem 2rem !important;
     font-size: 0.75rem !important;
-    font-weight: 500 !important;
+    font-weight: 400 !important;
     font-family: 'Aileron', sans-serif !important;
-    letter-spacing: 0.1em !important;
+    letter-spacing: 0.15em !important;
     text-transform: uppercase !important;
-    background: transparent !important;
+    background-color: transparent !important;
     color: #3D1F1F !important;
     border: 1px solid #3D1F1F !important;
     border-radius: 0 !important;
     cursor: pointer !important;
-    transition: all 0.2s !important;
+    transition: opacity 0.2s !important;
     text-decoration: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
 }
 
 .btn-bingo-outline:hover {
-    background: #F5F0E8 !important;
+    background-color: #F5F0E8 !important;
     color: #3D1F1F !important;
+    opacity: 1 !important;
 }
 
 /* ===== GAME HEADER ===== */
@@ -164,7 +173,7 @@
 
 .bingo-player-name {
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 400;
     color: #3D1F1F;
     font-family: 'Aileron', sans-serif;
     text-transform: uppercase;
@@ -173,11 +182,10 @@
 
 .bingo-match-count {
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 400;
     color: #3D1F1F;
     background: #F5F0E8;
     padding: 0.25rem 0.5rem;
-    border-radius: 4px;
     font-family: 'Aileron', sans-serif;
 }
 
@@ -186,7 +194,7 @@
     text-align: center;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
-    font-weight: 500;
+    font-weight: 400;
     display: none;
     font-family: 'Aileron', sans-serif;
     text-transform: uppercase;
@@ -215,9 +223,9 @@
 
 .bingo-cell {
     aspect-ratio: 1;
-    background: #F9F8F4;
+    background: #ffffff;
     border: 1px solid #DEDACF;
-    border-radius: 4px;
+    border-radius: 0;
     padding: 4px;
     font-size: 0.6rem;
     line-height: 1.3;
@@ -237,7 +245,6 @@
 .bingo-cell:hover:not(.matched):not(.center) {
     background: #F5F0E8;
     border-color: #3D1F1F;
-    transform: scale(1.02);
 }
 
 .bingo-cell.matched {
@@ -253,7 +260,7 @@
 }
 
 .bingo-cell.matched .cell-match {
-    font-weight: 600;
+    font-weight: 400;
     font-size: 0.65rem;
     margin-top: 2px;
 }
@@ -264,13 +271,14 @@
     cursor: default;
     color: #3D1F1F;
     font-size: 1.2rem;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 /* ===== GAME ACTIONS ===== */
 .bingo-game-actions {
     display: flex;
     gap: 1rem;
+    margin-top: 1rem;
 }
 
 .bingo-game-actions .btn-bingo-primary,
@@ -296,7 +304,7 @@
 
 .bingo-modal-content {
     background: #F9F8F4;
-    border-radius: 4px;
+    border-radius: 0;
     padding: 2rem;
     width: 100%;
     max-width: 400px;
@@ -323,7 +331,7 @@
 .bingo-modal-title {
     font-family: 'Aileron', sans-serif;
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 400;
     color: #3D1F1F;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
@@ -336,9 +344,10 @@
     margin-bottom: 1.5rem;
     padding: 1rem;
     background: #F5F0E8;
-    border-radius: 4px;
-    font-style: italic;
     border-left: 3px solid #3D1F1F;
+    font-style: italic;
+    font-family: 'Aileron', sans-serif;
+    font-weight: 400;
 }
 
 .bingo-match-hint {
@@ -346,6 +355,7 @@
     color: #A3968D;
     margin-bottom: 1.5rem;
     font-family: 'Aileron', sans-serif;
+    font-weight: 400;
 }
 
 .bingo-modal-actions {
@@ -380,7 +390,6 @@
     gap: 2rem;
     background: #F5F0E8;
     padding: 2rem;
-    border-radius: 4px;
     margin: 2rem 0;
     border: 1px solid #DEDACF;
 }
@@ -394,7 +403,7 @@
 .bingo-stat-value {
     font-family: 'Aileron', sans-serif;
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 400;
     color: #3D1F1F;
     letter-spacing: -0.04em;
 }
@@ -405,19 +414,21 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-family: 'Aileron', sans-serif;
+    font-weight: 400;
 }
 
 .bingo-completion-note {
     font-size: 0.875rem;
     color: #A3968D;
     margin-bottom: 2rem;
+    font-family: 'Aileron', sans-serif;
+    font-weight: 400;
 }
 
 /* ===== CARD SNAPSHOT ===== */
 .bingo-card-snapshot {
     background: #F9F8F4;
     border: 1px solid #DEDACF;
-    border-radius: 4px;
     padding: 1rem;
     margin: 1.5rem 0;
     width: 100%;
@@ -435,7 +446,7 @@
 .bingo-snapshot-logo {
     font-family: 'Aileron', sans-serif;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 400;
     color: #3D1F1F;
     text-transform: uppercase;
     letter-spacing: -0.04em;
@@ -447,6 +458,7 @@
     color: #A3968D;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    font-weight: 400;
 }
 
 .bingo-snapshot-grid {
@@ -458,6 +470,8 @@
     font-size: 0.75rem;
     color: #c53030;
     margin-top: 0.25rem;
+    font-family: 'Aileron', sans-serif;
+    font-weight: 400;
 }
 
 /* ===== RESPONSIVE ===== */
