@@ -29,7 +29,6 @@ const BINGO_PROMPTS = [
 ];
 
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwp1P5br0cwxLUVwELiCf3qKY3lV3Vwp1hEP4M-IjgrTIviEVM_a3dYcyG9L7k0F0pX/exec';
-
 const TOTAL_SQUARES = 24;
 const STORAGE_KEY = 'socios_bingo_state';
 
@@ -269,8 +268,6 @@ async function handleClaimBingo() {
 }
 
 async function handleEndGame() {
-    const confirmed = confirm('Are you sure you want to end your game?');
-    if (!confirmed) return;
     await submitToSheets('end', {
         playerName: state.player.name,
         playerEmail: state.player.email,
