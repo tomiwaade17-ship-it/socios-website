@@ -61,13 +61,16 @@ const elements = {
     endGameBtn: document.getElementById('end-game-btn'),
     finalMatches: document.getElementById('final-matches'),
     uniquePeople: document.getElementById('unique-people'),
-    completionMessage: document.getElementById('completion-message')
+    completionMessage: document.getElementById('completion-message'),
+    downloadCardBtn: document.getElementById('download-card-btn'),
+    bingoCardSnapshot: document.getElementById('bingo-card-snapshot'),
+    snapshotGrid: document.getElementById('snapshot-grid'),
+    snapshotPlayerName: document.getElementById('snapshot-player-name')
 };
 
 let currentCellIndex = null;
 
 function init() {
-    // Always start fresh on page load
     localStorage.removeItem(STORAGE_KEY);
     setupEventListeners();
 }
@@ -79,6 +82,7 @@ function setupEventListeners() {
     elements.modalCancel.addEventListener('click', closeModal);
     elements.claimBingoBtn.addEventListener('click', handleClaimBingo);
     elements.endGameBtn.addEventListener('click', handleEndGame);
+    elements.downloadCardBtn.addEventListener('click', handleDownloadCard);
 
     elements.matchModal.addEventListener('click', (e) => {
         if (e.target === elements.matchModal) closeModal();
@@ -143,6 +147,31 @@ function renderGrid() {
         }
 
         elements.bingoGrid.appendChild(cell);
+    });
+}
+
+function renderSnapshotGrid() {
+    elements.snapshotGrid.innerHTML = '';
+    elements.snapshotPlayerName.textContent = state.player?.name || '';
+
+    state.grid.forEach((prompt, index) => {
+        const cell = document.createElement('div');
+        cell.className = 'bingo-cell';
+
+        if (prompt === null) {
+            cell.classList.add('center', 'matched');
+            cell.innerHTML = '<span style="font-size: 1.5rem;">S</span>';
+        } else if (state.matches[index]) {
+            cell.classList.add('matched');
+            cell.innerHTML = `
+                <span class="cell-prompt">${truncateText(prompt, 30)}</span>
+                <span class="cell-match">${state.matches[index].name}</span>
+            `;
+        } else {
+            cell.innerHTML = `<span class="cell-prompt">${truncateText(prompt, 50)}</span>`;
+        }
+
+        elements.snapshotGrid.appendChild(cell);
     });
 }
 
@@ -259,12 +288,41 @@ function finishGame(gotBingo) {
     const uniquePeople = Object.keys(state.nameUsage).length;
     elements.finalMatches.textContent = matchCount;
     elements.uniquePeople.textContent = uniquePeople;
+
     if (gotBingo) {
         elements.completionMessage.textContent = 'Congratulations on completing your Bingo!';
     } else {
         elements.completionMessage.textContent = `You made ${matchCount} matches with ${uniquePeople} people.`;
     }
+
+    renderSnapshotGrid();
     showScreen('completion');
+}
+
+async function handleDownloadCard() {
+    const btn = elements.downloadCardBtn;
+    btn.textContent = 'Generating...';
+    btn.disabled = true;
+
+    try {
+        const canvas = await html2canvas(elements.bingoCardSnapshot, {
+            backgroundColor: '#F9F8F4',
+            scale: 2,
+            useCORS: true,
+            logging: false
+        });
+
+        const link = document.createElement('a');
+        link.download = 'socios-bingo-' + (state.player?.name || 'card').replace(/\s+/g, '-').toLowerCase() + '.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    } catch (error) {
+        console.error('Download failed:', error);
+        alert('Download failed. Please try again.');
+    }
+
+    btn.textContent = 'Download My Card ↓';
+    btn.disabled = false;
 }
 
 async function submitToSheets(action, data) {
