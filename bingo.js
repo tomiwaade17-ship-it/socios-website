@@ -1,36 +1,12 @@
 // Socios Human Bingo - Application Logic
 
-const BINGO_PROMPTS = [
-    "Has started planning their Halloween costume.",
-    "Has already tasted a pumpkin spice latte this season.",
-    "Is planning a fall hike or nature walk.",
-    "Is planning a solo trip somewhere this fall.",
-    "Has a fall birthday (September, October, or November).",
-    "Has already started their Christmas or holiday shopping.",
-    "Came to Socios wearing a sweater.",
-    "Is taking a class or learning a new skill this season.",
-    "Is planning to volunteer for a cause this fall.",
-    "Has a favorite book to read when it's cold outside.",
-    "Is planning to host a dinner party this fall.",
-    "Feels more productive and creative in the autumn.",
-    null,
-    "Hates the smell of cinnamon.",
-    "Has never been to a farmers market.",
-    "Is not directly related to a Libra or Scorpio.",
-    "Has never been camping.",
-    "Has never tasted a pumpkin.",
-    "Is planning to go to a wine region this fall.",
-    "Believes that soup is a perfectly acceptable meal 3x a day.",
-    "Would like to have coffee with you sometime.",
-    "Has tried more than five different kinds of squash.",
-    "Has a specific goal they want to accomplish before winter arrives.",
-    "Knows how to build a proper fire.",
-    "Can knit or crochet a scarf."
-];
+const BINGO_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmJ_eG_4lWnbYZ4Id9EFENpkw848NcB5lUXJrfZHIevEuYol6K7e9MU8xTiwCOCGrSChFGefANOqDd/pub?gid=1935715857&single=true&output=csv';
 
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwp1P5br0cwxLUVwELiCf3qKY3lV3Vwp1hEP4M-IjgrTIviEVM_a3dYcyG9L7k0F0pX/exec';
 const TOTAL_SQUARES = 24;
 const STORAGE_KEY = 'socios_bingo_state';
+
+let BINGO_PROMPTS = [];
 
 let state = {
     player: null,
@@ -64,14 +40,72 @@ const elements = {
     downloadCardBtn: document.getElementById('download-card-btn'),
     bingoCardSnapshot: document.getElementById('bingo-card-snapshot'),
     snapshotGrid: document.getElementById('snapshot-grid'),
-    snapshotPlayerName: document.getElementById('snapshot-player-name')
+    snapshotPlayerName: document.getElementById('snapshot-player-name'),
+    bingoTitle: document.getElementById('bingo-title'),
+    bingoSubtitle: document.getElementById('bingo-subtitle')
 };
 
 let currentCellIndex = null;
 
+async function loadBingoSheet() {
+    try {
+        const response = await fetch(BINGO_SHEET_URL);
+        const text = await response.text();
+        const lines = text.split('\n');
+        const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim().toLowerCase());
+
+        const titleIndex = headers.indexOf('title');
+        const subtitleIndex = headers.indexOf('subtitle');
+        const promptIndex = headers.indexOf('prompt');
+
+        const rows = lines.slice(1).filter(line => line.trim());
+
+        // Get title and subtitle from first row
+        const firstRow = parseCSVLine(rows[0]);
+        const title = firstRow[titleIndex]?.replace(/"/g, '').trim();
+        const subtitle = firstRow[subtitleIndex]?.replace(/"/g, '').trim();
+
+        if (title && elements.bingoTitle) elements.bingoTitle.textContent = title;
+        if (subtitle && elements.bingoSubtitle) elements.bingoSubtitle.textContent = subtitle;
+
+        // Get all prompts
+        BINGO_PROMPTS = rows.map(row => {
+            const cols = parseCSVLine(row);
+            const prompt = cols[promptIndex]?.replace(/"/g, '').trim();
+            return prompt || null;
+        }).filter(p => p !== null && p !== '');
+
+        // Insert null at index 12 for free center square
+        BINGO_PROMPTS.splice(12, 0, null);
+
+    } catch (error) {
+        console.error('Error loading bingo sheet:', error);
+    }
+}
+
+function parseCSVLine(line) {
+    const cols = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            cols.push(current.trim());
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    cols.push(current.trim());
+    return cols;
+}
+
 function init() {
     localStorage.removeItem(STORAGE_KEY);
     setupEventListeners();
+    loadBingoSheet();
 }
 
 function setupEventListeners() {
@@ -107,6 +141,11 @@ async function handleRegistration(e) {
     const email = document.getElementById('email').value.trim();
     const profession = document.getElementById('profession').value.trim();
     if (!name || !email || !profession) return;
+
+    if (BINGO_PROMPTS.length === 0) {
+        alert('Bingo card is still loading. Please try again in a moment.');
+        return;
+    }
 
     state.player = { name, email, profession };
     state.grid = shuffleArray([...BINGO_PROMPTS]);
